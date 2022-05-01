@@ -10,8 +10,13 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 class Export
 {
     private \rex_yform_manager_table $table;
+    private array $relationsMap;
+    private Spreadsheet $spreadsheet;
+    private Worksheet $sheet;
 
     /**
+     * @throws Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \rex_sql_exception
      */
     public function __construct() {
@@ -20,6 +25,30 @@ class Export
         if ('yform_table_export' === $func && \rex_get('table')) {
             $this->table = \rex_yform_manager_table::get(\rex_get('table', 'string'));
             $this->exportTableSet();
+        }
+    }
+
+    /**
+     * set table relations
+     * @return void
+     */
+    private function setRelations(): void {
+        $tableRelations = $this->table->getRelations();
+        $relations = [];
+
+        if ($tableRelations) {
+            foreach ($tableRelations as $column => $field) {
+                $relations[$column] = \rex_yform_value_be_manager_relation::getListValues($field->getElement('table'), $field->getElement('field'));
+            }
+
+            $i = 2;
+            foreach ($this->table->getColumns() as $column) {
+                if(array_key_exists($column['name'], $relations)) {
+                    $this->relationsMap[$i] = $relations[$column['name']];
+                }
+
+                $i++;
+            }
         }
     }
 
@@ -36,23 +65,35 @@ class Export
             exit();
         }
 
+        /** create the spreadsheet */
+        $this->spreadsheet = new Spreadsheet();
+        $this->sheet = $this->spreadsheet->getActiveSheet();
 
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
+        /** set worksheet name */
+        $this->sheet->setTitle($this->table->getName());
 
-        $this->setHeader($sheet, $data[0]);
+        /** set relations */
+        $this->setRelations();
+
+        /** set header labels */
+        $this->setHeader($data[0]);
 
         $r = 2;
         foreach ($data as $row) {
             $c = 1;
-            foreach ($row as $column) {
-                $sheet->setCellValue([$c, $r], $column);
+            foreach ($row as $name => $value) {
+                /** set relation */
+                if(isset($this->relationsMap[$c])) {
+                    $value = $this->relationsMap[$c][$value];
+                }
+
+                $this->sheet->setCellValue([$c, $r], $value);
                 $c++;
             }
             $r++;
         }
 
-        $writer = new Xlsx($spreadsheet);
+        $writer = new Xlsx($this->spreadsheet);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="' . urlencode(time() . '_' . $this->table->getTableName() . '.xlsx') . '"');
         $writer->save('php://output');
@@ -61,12 +102,11 @@ class Export
 
     /**
      * set table/sheet header
-     * @param Worksheet $sheet
      * @param array $data
      * @return void
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    private function setHeader(Worksheet $sheet, array $data): void {
+    private function setHeader(array $data): void {
         $i = 1;
         foreach ($data as $name => $value) {
             $label = $name;
@@ -76,13 +116,13 @@ class Export
                 $label = $valueField->getLabel();
             }
 
-            $sheet->setCellValue([$i, 1], $label);
+            $this->sheet->setCellValue([$i, 1], $label);
             $i++;
         }
 
         /**
          * fix first row/labels
          */
-        $sheet->freezePane([1, 2]);
+        $this->sheet->freezePane([1, 2]);
     }
 }
