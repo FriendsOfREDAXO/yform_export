@@ -25,7 +25,7 @@ class ExtensionPoints
         $item['url'] = \rex_url::currentBackendPage() . '&' . http_build_query($linkParams);
         $item['attributes']['class'][] = 'btn-info';
         $item['attributes']['id'] = 'yform-export-table';
-        $item['attributes']['download'] = '';
+//        $item['attributes']['download'] = '';
 
         /** add export button to table links */
         $linkSets['table_links'][] = $item;

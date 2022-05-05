@@ -2,6 +2,8 @@
 
 namespace YFormExport;
 
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Writer\Exception;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -11,6 +13,7 @@ class Export
 {
     private \rex_yform_manager_table $table;
     private array $relationsMap;
+    private array $columnTypes;
     private Spreadsheet $spreadsheet;
     private Worksheet $sheet;
 
@@ -29,6 +32,27 @@ class Export
     }
 
     /**
+     * set column types
+     * @return void
+     */
+    private function setColumnTypes(): void {
+        $columnTypes = [];
+        $types = [
+            'datetime',
+            'date',
+        ];
+
+        $i = 2;
+        foreach ($this->table->getColumns() as $column) {
+            if (in_array($column['type'], $types, true)) {
+                $this->columnTypes[$i] = $column['type'];
+            }
+
+            $i++;
+        }
+    }
+
+    /**
      * set table relations
      * @return void
      */
@@ -43,7 +67,7 @@ class Export
 
             $i = 2;
             foreach ($this->table->getColumns() as $column) {
-                if(array_key_exists($column['name'], $relations)) {
+                if (array_key_exists($column['name'], $relations)) {
                     $this->relationsMap[$i] = $relations[$column['name']];
                 }
 
@@ -75,6 +99,9 @@ class Export
         /** set relations */
         $this->setRelations();
 
+        /** set column types to format cells */
+        $this->setColumnTypes();
+
         /** set header labels */
         $this->setHeader($data[0]);
 
@@ -83,11 +110,22 @@ class Export
             $c = 1;
             foreach ($row as $name => $value) {
                 /** set relation */
-                if(isset($this->relationsMap[$c])) {
+                if (isset($this->relationsMap[$c])) {
                     $value = $this->relationsMap[$c][$value];
                 }
 
-                $this->sheet->setCellValue([$c, $r], $value);
+                /** format cell */
+                if (isset($this->columnTypes[$c]) && $this->columnTypes[$c] === 'datetime') {
+                    $this->sheet->setCellValue([$c, $r], Date::PHPToExcel($value));
+                    $this->sheet
+                        ->getStyle([$c, $r, $c, $r])
+                        ->getNumberFormat()
+                        ->setFormatCode(NumberFormat::FORMAT_DATE_DATETIME);
+                }
+                else {
+                    $this->sheet->setCellValue([$c, $r], $value);
+                }
+
                 $c++;
             }
             $r++;
