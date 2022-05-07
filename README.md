@@ -1,6 +1,9 @@
-# yform_export
-Exportiert yform Tabellen in Xls, Xlsx oder Ods Formate
+#  YForm 4 .xlsx Export für REDAXO 5
+
+Exportiert YForm Tabellen als `.xlsx`
+
+
 
 ## Credits
 
-- [PHPOffice - PhpSpreadsheet](https://github.com/PHPOffice/phpspreadsheet/)
+**[PHPOffice - PhpSpreadsheet](https://github.com/PHPOffice/phpspreadsheet/)**

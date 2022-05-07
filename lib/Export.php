@@ -3,7 +3,6 @@
 namespace YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Writer\Exception;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -14,6 +13,7 @@ class Export
     private \rex_yform_manager_table $table;
     private array $relationsMap;
     private array $columnTypes;
+    private array $choices;
     private Spreadsheet $spreadsheet;
     private Worksheet $sheet;
 
@@ -32,6 +32,41 @@ class Export
     }
 
     /**
+     * get available choice names
+     * @return array
+     */
+    private function getChoiceNames(): array {
+        $choices = $this->table->getValueFields(['type_name' => 'choice']);
+        $choiceNames = [];
+
+        foreach ($choices as $choice) {
+            $name = $choice->getName();
+            $choiceNames[] = $name;
+            $this->choices[$name] = $this->resolveChoices($name, $choice);
+        }
+
+        return $choiceNames;
+    }
+
+    /**
+     * resolve choice values
+     * @param string $columnName
+     * @param \rex_yform_manager_field $field
+     * @return mixed
+     */
+    private function resolveChoices(string $columnName, \rex_yform_manager_field $field):array {
+        return \rex_yform_value_choice::getListValues([
+            'field' => $columnName,
+            'choices' => $field->getElement('choices'),
+            'params' => [
+                'field' => $field->toArray(),
+                'fields' => $this->table->getFields(),
+            ],
+        ]);
+    }
+
+
+    /**
      * set column types
      * @return void
      */
@@ -42,10 +77,15 @@ class Export
             'date',
         ];
 
+        $choices = $this->getChoiceNames();
+
         $i = 2;
         foreach ($this->table->getColumns() as $column) {
             if (in_array($column['type'], $types, true)) {
                 $this->columnTypes[$i] = $column['type'];
+            }
+            elseif (in_array($column['name'], $choices, true)) {
+                $this->columnTypes[$i] = 'choice';
             }
 
             $i++;
@@ -109,22 +149,39 @@ class Export
         foreach ($data as $row) {
             $c = 1;
             foreach ($row as $name => $value) {
+                $column = $this->sheet->getCell([$c, $r])->getColumn();
+
                 /** set relation */
                 if (isset($this->relationsMap[$c])) {
                     $value = $this->relationsMap[$c][$value];
                 }
 
                 /** format cell */
-                if (isset($this->columnTypes[$c]) && $this->columnTypes[$c] === 'datetime') {
-                    $this->sheet->setCellValue([$c, $r], Date::PHPToExcel($value));
-                    $this->sheet
-                        ->getStyle([$c, $r, $c, $r])
-                        ->getNumberFormat()
-                        ->setFormatCode(NumberFormat::FORMAT_DATE_DATETIME);
+                if (isset($this->columnTypes[$c])) {
+                    switch ($this->columnTypes[$c]) {
+                        case 'datetime':
+                            $this->sheet->setCellValue([$c, $r], Date::PHPToExcel($value));
+                            $this->sheet
+                                ->getStyle([$c, $r, $c, $r])
+                                ->getNumberFormat()
+                                ->setFormatCode('dd/mm/yyyy hh:mm:ss');
+                            break;
+                        case 'choice':
+                            if('' !== $value) {
+                                $this->sheet->setCellValue([$c, $r], $this->choices[$name][$value]);
+                            }
+                            break;
+                        default:
+                            $this->sheet->setCellValue([$c, $r], $value);
+                            break;
+                    }
                 }
                 else {
                     $this->sheet->setCellValue([$c, $r], $value);
                 }
+
+                /** set auto width */
+                $this->sheet->getColumnDimension($column)->setAutoSize(true);
 
                 $c++;
             }
