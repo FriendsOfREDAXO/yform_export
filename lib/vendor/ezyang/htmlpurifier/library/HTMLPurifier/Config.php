@@ -347,7 +347,7 @@ class HTMLPurifier_Config
             $value = $this->parser->parse($value, $type, $allow_null);
         } catch (HTMLPurifier_VarParserException $e) {
             $this->triggerError(
-                'Value for ' . $key . ' is of invalid type, should be ' .
+                'Base for ' . $key . ' is of invalid type, should be ' .
                 HTMLPurifier_VarParser::getTypeName($type),
                 E_USER_WARNING
             );
@@ -361,7 +361,7 @@ class HTMLPurifier_Config
             // check to see if the value is allowed
             if (isset($def->allowed) && !isset($def->allowed[$value])) {
                 $this->triggerError(
-                    'Value not supported, valid values are: ' .
+                    'Base not supported, valid values are: ' .
                     $this->_listify($def->allowed),
                     E_USER_WARNING
                 );
@@ -653,7 +653,7 @@ class HTMLPurifier_Config
     {
         return $this->getDefinition('HTML', true, true);
     }
-    
+
     /**
      * @return HTMLPurifier_CSSDefinition|null
      */
@@ -661,7 +661,7 @@ class HTMLPurifier_Config
     {
         return $this->getDefinition('CSS', true, true);
     }
-    
+
     /**
      * @return HTMLPurifier_URIDefinition|null
      */
@@ -672,7 +672,7 @@ class HTMLPurifier_Config
 
     /**
      * Loads configuration values from an array with the following structure:
-     * Namespace.Directive => Value
+     * Namespace.Directive => Base
      *
      * @param array $config_array Configuration associative array
      */

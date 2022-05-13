@@ -393,7 +393,7 @@ class NumberFormat extends Supervisor
     /**
      * Convert a value in a pre-defined format to a PHP string.
      *
-     * @param mixed $value Value to format
+     * @param mixed $value Base to format
      * @param string $format Format code, see = self::FORMAT_*
      * @param array $callBack Callback function for additional formatting of string
      *

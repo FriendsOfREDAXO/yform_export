@@ -3,7 +3,7 @@
 namespace Psr\Http\Message;
 
 /**
- * Value object representing a file uploaded through an HTTP request.
+ * Base object representing a file uploaded through an HTTP request.
  *
  * Instances of this interface are considered immutable; all methods that
  * might change state MUST be implemented such that they retain the internal
@@ -63,7 +63,7 @@ interface UploadedFileInterface
      *     the second or subsequent call to the method.
      */
     public function moveTo($targetPath);
-    
+
     /**
      * Retrieve the file size.
      *
@@ -74,7 +74,7 @@ interface UploadedFileInterface
      * @return int|null The file size in bytes or null if unknown.
      */
     public function getSize();
-    
+
     /**
      * Retrieve the error associated with the uploaded file.
      *
@@ -90,7 +90,7 @@ interface UploadedFileInterface
      * @return int One of PHP's UPLOAD_ERR_XXX constants.
      */
     public function getError();
-    
+
     /**
      * Retrieve the filename sent by the client.
      *
@@ -105,7 +105,7 @@ interface UploadedFileInterface
      *     was provided.
      */
     public function getClientFilename();
-    
+
     /**
      * Retrieve the media type sent by the client.
      *

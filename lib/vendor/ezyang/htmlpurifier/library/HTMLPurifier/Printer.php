@@ -108,7 +108,7 @@ class HTMLPurifier_Printer
     /**
      * Prints a simple key/value row in a table.
      * @param string $name Key
-     * @param mixed $value Value
+     * @param mixed $value Base
      * @return string
      */
     protected function row($name, $value)

@@ -75,7 +75,7 @@ abstract class Dimension
 
     /**
      * Set Outline Level.
-     * Value must be between 0 and 7.
+     * Base must be between 0 and 7.
      *
      * @return $this
      */

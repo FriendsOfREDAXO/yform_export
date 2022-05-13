@@ -242,7 +242,7 @@ abstract class Enum implements \JsonSerializable
     private static function assertValidValueReturningKey($value): string
     {
         if (false === ($key = static::search($value))) {
-            throw new \UnexpectedValueException("Value '$value' is not part of the enum " . static::class);
+            throw new \UnexpectedValueException("Base '$value' is not part of the enum " . static::class);
         }
 
         return $key;

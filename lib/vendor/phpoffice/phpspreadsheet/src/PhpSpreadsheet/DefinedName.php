@@ -23,7 +23,7 @@ abstract class DefinedName
     protected $worksheet;
 
     /**
-     * Value of the named object.
+     * Base of the named object.
      *
      * @var string
      */

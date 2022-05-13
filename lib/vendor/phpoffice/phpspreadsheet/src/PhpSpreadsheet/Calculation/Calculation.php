@@ -2851,7 +2851,7 @@ class Calculation
     }
 
     /**
-     * Set the Array Return Type (Array or Value of first element in the array).
+     * Set the Array Return Type (Array or Base of first element in the array).
      *
      * @param string $returnType Array return type
      *
@@ -2873,7 +2873,7 @@ class Calculation
     }
 
     /**
-     * Return the Array Return Type (Array or Value of first element in the array).
+     * Return the Array Return Type (Array or Base of first element in the array).
      *
      * @return string $returnType Array return type
      */
@@ -4171,7 +4171,7 @@ class Calculation
                     $output[] = $outputItem;
                 } else { // it's a variable, constant, string, number or boolean
                     $localeConstant = false;
-                    $stackItemType = 'Value';
+                    $stackItemType = 'Base';
                     $stackItemReference = null;
 
                     //    If the last entry on the stack was a : operator, then we may have a row or column range reference
@@ -4332,7 +4332,7 @@ class Calculation
                         (preg_match('/^' . self::CALCULATION_REGEXP_CELLREF . '.*/Ui', substr($formula, $index), $match)) &&
                         ($output[count($output) - 1]['type'] === 'Cell Reference') ||
                         (preg_match('/^' . self::CALCULATION_REGEXP_DEFINEDNAME . '.*/miu', substr($formula, $index), $match)) &&
-                            ($output[count($output) - 1]['type'] === 'Defined Name' || $output[count($output) - 1]['type'] === 'Value')
+                            ($output[count($output) - 1]['type'] === 'Defined Name' || $output[count($output) - 1]['type'] === 'Base')
                     )
                 ) {
                     while (
@@ -4427,7 +4427,7 @@ class Calculation
                 ) {
                     // If branching value is not true, we don't need to compute
                     if (!isset($fakedForBranchPruning['onlyIf-' . $onlyIfStoreKey])) {
-                        $stack->push('Value', 'Pruned branch (only if ' . $onlyIfStoreKey . ') ' . $token);
+                        $stack->push('Base', 'Pruned branch (only if ' . $onlyIfStoreKey . ') ' . $token);
                         $fakedForBranchPruning['onlyIf-' . $onlyIfStoreKey] = true;
                     }
 
@@ -4459,7 +4459,7 @@ class Calculation
                 ) {
                     // If branching value is true, we don't need to compute
                     if (!isset($fakedForBranchPruning['onlyIfNot-' . $onlyIfNotStoreKey])) {
-                        $stack->push('Value', 'Pruned branch (only if not ' . $onlyIfNotStoreKey . ') ' . $token);
+                        $stack->push('Base', 'Pruned branch (only if not ' . $onlyIfNotStoreKey . ') ' . $token);
                         $fakedForBranchPruning['onlyIfNot-' . $onlyIfNotStoreKey] = true;
                     }
 
@@ -4636,7 +4636,7 @@ class Calculation
                             $result = self::FORMULA_STRING_QUOTE . str_replace('""', self::FORMULA_STRING_QUOTE, self::unwrapResult($operand1) . self::unwrapResult($operand2)) . self::FORMULA_STRING_QUOTE;
                         }
                         $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($result));
-                        $stack->push('Value', $result);
+                        $stack->push('Base', $result);
 
                         if (isset($storeKey)) {
                             $branchStore[$storeKey] = $result;
@@ -4660,7 +4660,7 @@ class Calculation
                             $cellRef = Coordinate::stringFromColumnIndex(min($oCol) + 1) . min($oRow) . ':' .
                                 Coordinate::stringFromColumnIndex(max($oCol) + 1) . max($oRow);
                             $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($cellIntersect));
-                            $stack->push('Value', $cellIntersect, $cellRef);
+                            $stack->push('Base', $cellIntersect, $cellRef);
                         }
 
                         break;
@@ -4691,7 +4691,7 @@ class Calculation
                         $result = '#VALUE!';
                     }
                     $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($result));
-                    $stack->push('Value', $result);
+                    $stack->push('Base', $result);
                     if (isset($storeKey)) {
                         $branchStore[$storeKey] = $result;
                     }
@@ -4770,7 +4770,7 @@ class Calculation
                     }
                 }
 
-                $stack->push('Cell Value', $cellValue, $cellRef);
+                $stack->push('Cell Base', $cellValue, $cellRef);
                 if (isset($storeKey)) {
                     $branchStore[$storeKey] = $cellValue;
                 }
@@ -4867,7 +4867,7 @@ class Calculation
                     if ($functionName !== 'MKMATRIX') {
                         $this->debugLog->writeDebugLog('Evaluation Result for %s() function call is %s', self::localeFunc($functionName), $this->showTypeDetails($result));
                     }
-                    $stack->push('Value', self::wrapResult($result));
+                    $stack->push('Base', self::wrapResult($result));
                     if (isset($storeKey)) {
                         $branchStore[$storeKey] = $result;
                     }
@@ -4876,7 +4876,7 @@ class Calculation
                 // if the token is a number, boolean, string or an Excel error, push it onto the stack
                 if (isset(self::$excelConstants[strtoupper($token ?? '')])) {
                     $excelConstant = strtoupper($token);
-                    $stack->push('Constant Value', self::$excelConstants[$excelConstant]);
+                    $stack->push('Constant Base', self::$excelConstants[$excelConstant]);
                     if (isset($storeKey)) {
                         $branchStore[$storeKey] = self::$excelConstants[$excelConstant];
                     }
@@ -4938,7 +4938,7 @@ class Calculation
             if (!is_numeric($operand)) {
                 //    If not a numeric, test to see if the value is an Excel error, and so can't be used in normal binary operations
                 if ($operand > '' && $operand[0] == '#') {
-                    $stack->push('Value', $operand);
+                    $stack->push('Base', $operand);
                     $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($operand));
 
                     return false;
@@ -5022,7 +5022,7 @@ class Calculation
         //    Log the result details
         $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($result));
         //    And push the result onto the stack
-        $stack->push('Value', $result);
+        $stack->push('Base', $result);
 
         return $result;
     }
@@ -5115,7 +5115,7 @@ class Calculation
         //    Log the result details
         $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($result));
         //    And push the result onto the stack
-        $stack->push('Value', $result);
+        $stack->push('Base', $result);
 
         return $result;
     }
@@ -5426,7 +5426,7 @@ class Calculation
             $cell->getRow() - 1
         );
 
-        $this->debugLog->writeDebugLog('Value adjusted for relative references is %s', $definedNameValue);
+        $this->debugLog->writeDebugLog('Base adjusted for relative references is %s', $definedNameValue);
 
         $recursiveCalculator = new self($this->spreadsheet);
         $recursiveCalculator->getDebugLog()->setWriteDebugLog($this->getDebugLog()->getWriteDebugLog());

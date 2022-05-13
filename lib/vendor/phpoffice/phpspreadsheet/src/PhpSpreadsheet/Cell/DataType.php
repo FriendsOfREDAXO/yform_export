@@ -46,7 +46,7 @@ class DataType
     /**
      * Check a string that it satisfies Excel requirements.
      *
-     * @param null|RichText|string $textValue Value to sanitize to an Excel string
+     * @param null|RichText|string $textValue Base to sanitize to an Excel string
      *
      * @return null|RichText|string Sanitized value
      */
@@ -69,7 +69,7 @@ class DataType
     /**
      * Check a value that it is a valid error code.
      *
-     * @param mixed $value Value to sanitize to an Excel error code
+     * @param mixed $value Base to sanitize to an Excel error code
      *
      * @return string Sanitized value
      */

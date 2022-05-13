@@ -17,14 +17,14 @@ use Throwable;
 class Cell
 {
     /**
-     * Value binder to use.
+     * Base binder to use.
      *
      * @var IValueBinder
      */
     private static $valueBinder;
 
     /**
-     * Value of the cell.
+     * Base of the cell.
      *
      * @var mixed
      */
@@ -112,7 +112,7 @@ class Cell
             }
             $this->dataType = $dataType;
         } elseif (!self::getValueBinder()->bindValue($this, $value)) {
-            throw new Exception('Value could not be bound to cell.');
+            throw new Exception('Base could not be bound to cell.');
         }
     }
 
@@ -184,14 +184,14 @@ class Cell
      *
      *    Sets the value for a cell, automatically determining the datatype using the value binder
      *
-     * @param mixed $value Value
+     * @param mixed $value Base
      *
      * @return $this
      */
     public function setValue($value)
     {
         if (!self::getValueBinder()->bindValue($this, $value)) {
-            throw new Exception('Value could not be bound to cell.');
+            throw new Exception('Base could not be bound to cell.');
         }
 
         return $this;
@@ -200,7 +200,7 @@ class Cell
     /**
      * Set the value for a cell, with the explicit data type passed to the method (bypassing any use of the value binder).
      *
-     * @param mixed $value Value
+     * @param mixed $value Base
      * @param string $dataType Explicit data type, see DataType::TYPE_*
      *
      * @return Cell
@@ -310,7 +310,7 @@ class Cell
     /**
      * Set old calculated value (cached).
      *
-     * @param mixed $originalValue Value
+     * @param mixed $originalValue Base
      *
      * @return Cell
      */

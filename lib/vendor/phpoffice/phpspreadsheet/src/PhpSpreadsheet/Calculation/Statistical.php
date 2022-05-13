@@ -124,7 +124,7 @@ class Statistical
      * @see Statistical\Distributions\Beta::distribution()
      *      Use the distribution() method in the Statistical\Distributions\Beta class instead
      *
-     * @param float $value Value at which you want to evaluate the distribution
+     * @param float $value Base at which you want to evaluate the distribution
      * @param float $alpha Parameter to the distribution
      * @param float $beta Parameter to the distribution
      * @param mixed $rMin
@@ -196,7 +196,7 @@ class Statistical
      * @see Statistical\Distributions\ChiSquared::distributionRightTail()
      *      Use the distributionRightTail() method in the Statistical\Distributions\ChiSquared class instead
      *
-     * @param float $value Value for the function
+     * @param float $value Base for the function
      * @param float $degrees degrees of freedom
      *
      * @return array|float|string
@@ -456,7 +456,7 @@ class Statistical
      * @see Statistical\Distributions\Exponential::distribution()
      *      Use the distribution() method in the Statistical\Distributions\Exponential class instead
      *
-     * @param float $value Value of the function
+     * @param float $value Base of the function
      * @param float $lambda The parameter value
      * @param bool $cumulative
      *
@@ -480,7 +480,7 @@ class Statistical
      * @see Statistical\Distributions\F::distribution()
      *      Use the distribution() method in the Statistical\Distributions\Exponential class instead
      *
-     * @param float $value Value of the function
+     * @param float $value Base of the function
      * @param int $u The numerator degrees of freedom
      * @param int $v The denominator degrees of freedom
      * @param bool $cumulative If cumulative is TRUE, F.DIST returns the cumulative distribution function;
@@ -545,7 +545,7 @@ class Statistical
      * @see Statistical\Trends::FORECAST()
      *      Use the FORECAST() method in the Statistical\Trends class instead
      *
-     * @param float $xValue Value of X for which we want to find Y
+     * @param float $xValue Base of X for which we want to find Y
      * @param mixed $yValues array of mixed Data Series Y
      * @param mixed $xValues of mixed Data Series X
      *
@@ -585,7 +585,7 @@ class Statistical
      * @see Statistical\Distributions\Gamma::distribution()
      *      Use the distribution() method in the Statistical\Distributions\Gamma class instead
      *
-     * @param float $value Value at which you want to evaluate the distribution
+     * @param float $value Base at which you want to evaluate the distribution
      * @param float $a Parameter to the distribution
      * @param float $b Parameter to the distribution
      * @param bool $cumulative
@@ -1151,7 +1151,7 @@ class Statistical
      *      Use the distribution() method in the Statistical\Distributions\Normal class instead
      *
      * @param mixed $value
-     * @param mixed $mean Mean Value
+     * @param mixed $mean Mean Base
      * @param mixed $stdDev Standard Deviation
      * @param mixed $cumulative
      *
@@ -1173,7 +1173,7 @@ class Statistical
      *      Use the inverse() method in the Statistical\Distributions\Normal class instead
      *
      * @param mixed $probability
-     * @param mixed $mean Mean Value
+     * @param mixed $mean Mean Base
      * @param mixed $stdDev Standard Deviation
      *
      * @return array|float|string The result, or a string containing an error
@@ -1328,7 +1328,7 @@ class Statistical
      * Use the distribution() method in the Statistical\Distributions\Poisson class instead
      *
      * @param mixed $value
-     * @param mixed $mean Mean Value
+     * @param mixed $mean Mean Base
      * @param mixed $cumulative
      *
      * @return array|float|string The result, or a string containing an error
@@ -1476,8 +1476,8 @@ class Statistical
      * @see Statistical\Standardize::execute()
      *      Use the execute() method in the Statistical\Standardize class instead
      *
-     * @param float $value Value to normalize
-     * @param float $mean Mean Value
+     * @param float $value Base to normalize
+     * @param float $mean Mean Base
      * @param float $stdDev Standard Deviation
      *
      * @return array|float|string Standardized value, or a string containing an error
@@ -1606,7 +1606,7 @@ class Statistical
      * @see Statistical\Distributions\StudentT::distribution()
      *      Use the distribution() method in the Statistical\Distributions\StudentT class instead
      *
-     * @param float $value Value for the function
+     * @param float $value Base for the function
      * @param float $degrees degrees of freedom
      * @param float $tails number of tails (1 or 2)
      *

@@ -134,7 +134,7 @@ class Format
     }
 
     /**
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @return mixed
      */
@@ -155,7 +155,7 @@ class Format
     /**
      * VALUE.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *                         Or can be an array of values
      *
      * @return array|DateTimeInterface|float|int|string A string if arguments are invalid

@@ -83,7 +83,7 @@ class DateValue extends WizardAbstract implements WizardInterface
     public static function fromConditional(Conditional $conditional, string $cellRange = 'A1'): WizardInterface
     {
         if ($conditional->getConditionType() !== Conditional::CONDITION_TIMEPERIOD) {
-            throw new Exception('Conditional is not a Date Value CF Rule conditional');
+            throw new Exception('Conditional is not a Date Base CF Rule conditional');
         }
 
         $wizard = new self($cellRange);
@@ -101,7 +101,7 @@ class DateValue extends WizardAbstract implements WizardInterface
     public function __call($methodName, $arguments): self
     {
         if (!isset(self::MAGIC_OPERATIONS[$methodName])) {
-            throw new Exception('Invalid Operation for Date Value CF Rule Wizard');
+            throw new Exception('Invalid Operation for Date Base CF Rule Wizard');
         }
 
         $this->operator(self::MAGIC_OPERATIONS[$methodName]);

@@ -201,7 +201,7 @@ class Logical
      * Use the statementIf() method in the Logical\Conditional class instead
      *
      * @param mixed $condition Condition to evaluate
-     * @param mixed $returnIfTrue Value to return when condition is true
+     * @param mixed $returnIfTrue Base to return when condition is true
      * @param mixed $returnIfFalse Optional value to return when condition is false
      *
      * @return mixed The value of returnIfTrue or returnIfFalse determined by condition
@@ -256,8 +256,8 @@ class Logical
      * @see Logical\Conditional::IFERROR()
      * Use the IFERROR() method in the Logical\Conditional class instead
      *
-     * @param mixed $testValue Value to check, is also the value returned when no error
-     * @param mixed $errorpart Value to return when testValue is an error condition
+     * @param mixed $testValue Base to check, is also the value returned when no error
+     * @param mixed $errorpart Base to return when testValue is an error condition
      *
      * @return mixed The value of errorpart or testValue determined by error condition
      */
@@ -277,8 +277,8 @@ class Logical
      * @see Logical\Conditional::IFNA()
      * Use the IFNA() method in the Logical\Conditional class instead
      *
-     * @param mixed $testValue Value to check, is also the value returned when not an NA
-     * @param mixed $napart Value to return when testValue is an NA condition
+     * @param mixed $testValue Base to check, is also the value returned when not an NA
+     * @param mixed $napart Base to return when testValue is an NA condition
      *
      * @return mixed The value of errorpart or testValue determined by error condition
      */
@@ -296,7 +296,7 @@ class Logical
      *         testValue1 ... testValue_n
      *             Conditions to Evaluate
      *         returnIfTrue1 ... returnIfTrue_n
-     *             Value returned if corresponding testValue (nth) was true
+     *             Base returned if corresponding testValue (nth) was true
      *
      * @Deprecated 1.17.0
      *

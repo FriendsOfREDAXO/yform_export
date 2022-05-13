@@ -10,9 +10,9 @@ class Drawing
     /**
      * Convert pixels to EMU.
      *
-     * @param int $pixelValue Value in pixels
+     * @param int $pixelValue Base in pixels
      *
-     * @return int Value in EMU
+     * @return int Base in EMU
      */
     public static function pixelsToEMU($pixelValue)
     {
@@ -22,9 +22,9 @@ class Drawing
     /**
      * Convert EMU to pixels.
      *
-     * @param int|SimpleXMLElement $emuValue Value in EMU
+     * @param int|SimpleXMLElement $emuValue Base in EMU
      *
-     * @return int Value in pixels
+     * @return int Base in pixels
      */
     public static function EMUToPixels($emuValue)
     {
@@ -41,9 +41,9 @@ class Drawing
      * By inspection of a real Excel file using Calibri 11, one finds 1000px ~ 142.85546875
      * This gives a conversion factor of 7. Also, we assume that pixels and font size are proportional.
      *
-     * @param int $pixelValue Value in pixels
+     * @param int $pixelValue Base in pixels
      *
-     * @return float|int Value in cell dimension
+     * @return float|int Base in cell dimension
      */
     public static function pixelsToCellDimension($pixelValue, \PhpOffice\PhpSpreadsheet\Style\Font $defaultFont)
     {
@@ -66,10 +66,10 @@ class Drawing
     /**
      * Convert column width from (intrinsic) Excel units to pixels.
      *
-     * @param float $cellWidth Value in cell dimension
+     * @param float $cellWidth Base in cell dimension
      * @param \PhpOffice\PhpSpreadsheet\Style\Font $defaultFont Default font of the workbook
      *
-     * @return int Value in pixels
+     * @return int Base in pixels
      */
     public static function cellDimensionToPixels($cellWidth, \PhpOffice\PhpSpreadsheet\Style\Font $defaultFont)
     {
@@ -97,9 +97,9 @@ class Drawing
     /**
      * Convert pixels to points.
      *
-     * @param int $pixelValue Value in pixels
+     * @param int $pixelValue Base in pixels
      *
-     * @return float Value in points
+     * @return float Base in points
      */
     public static function pixelsToPoints($pixelValue)
     {
@@ -109,9 +109,9 @@ class Drawing
     /**
      * Convert points to pixels.
      *
-     * @param int $pointValue Value in points
+     * @param int $pointValue Base in points
      *
-     * @return int Value in pixels
+     * @return int Base in pixels
      */
     public static function pointsToPixels($pointValue)
     {

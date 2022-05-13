@@ -59,7 +59,7 @@ class TextValue extends WizardAbstract implements WizardInterface
     protected function operator(string $operator): void
     {
         if (!isset(self::OPERATORS[$operator])) {
-            throw new Exception('Invalid Operator for Text Value CF Rule Wizard');
+            throw new Exception('Invalid Operator for Text Base CF Rule Wizard');
         }
 
         $this->operator = $operator;
@@ -118,7 +118,7 @@ class TextValue extends WizardAbstract implements WizardInterface
     public static function fromConditional(Conditional $conditional, string $cellRange = 'A1'): WizardInterface
     {
         if (!in_array($conditional->getConditionType(), self::OPERATORS, true)) {
-            throw new Exception('Conditional is not a Text Value CF Rule conditional');
+            throw new Exception('Conditional is not a Text Base CF Rule conditional');
         }
 
         $wizard = new self($cellRange);
@@ -152,7 +152,7 @@ class TextValue extends WizardAbstract implements WizardInterface
     public function __call($methodName, $arguments): self
     {
         if (!isset(self::MAGIC_OPERATIONS[$methodName])) {
-            throw new Exception('Invalid Operation for Text Value CF Rule Wizard');
+            throw new Exception('Invalid Operation for Text Base CF Rule Wizard');
         }
 
         $this->operator(self::MAGIC_OPERATIONS[$methodName]);

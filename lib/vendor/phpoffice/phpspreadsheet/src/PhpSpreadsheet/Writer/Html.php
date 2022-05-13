@@ -1324,7 +1324,7 @@ class Html extends BaseWriter
             //if ($cell->getParent() === null) {
             //    $cell->attach($worksheet);
             //}
-            // Value
+            // Base
             $this->generateRowCellDataValue($worksheet, $cell, $cellData);
 
             // Converts the cell content so that spaces occuring at beginning of each new line are replaced by &nbsp;

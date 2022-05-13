@@ -476,7 +476,7 @@ class Chart extends WriterPart
     }
 
     /**
-     * Write Value Axis.
+     * Write Base Axis.
      *
      * @param null|string $groupType Chart type
      * @param string $id1

@@ -26,8 +26,8 @@ class Interest
      * @param mixed $interestRate Interest rate per period
      * @param mixed $period Period for which we want to find the interest
      * @param mixed $numberOfPeriods Number of periods
-     * @param mixed $presentValue Present Value
-     * @param mixed $futureValue Future Value
+     * @param mixed $presentValue Present Base
+     * @param mixed $futureValue Future Base
      * @param mixed $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string

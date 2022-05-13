@@ -388,7 +388,7 @@ class Properties
     }
 
     /**
-     * Get a Custom Property Value.
+     * Get a Custom Property Base.
      *
      * @return mixed
      */

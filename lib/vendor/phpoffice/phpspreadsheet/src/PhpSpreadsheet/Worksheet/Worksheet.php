@@ -1142,7 +1142,7 @@ class Worksheet implements IComparable
      *
      * @param array<int>|CellAddress|string $coordinate Coordinate of the cell as a string, eg: 'C5';
      *               or as an array of [$columnIndex, $row] (e.g. [3, 5]), or a CellAddress object.
-     * @param mixed $value Value for the cell
+     * @param mixed $value Base for the cell
      *
      * @return $this
      */
@@ -1163,7 +1163,7 @@ class Worksheet implements IComparable
      *
      * @param int $columnIndex Numeric column coordinate of the cell
      * @param int $row Numeric row coordinate of the cell
-     * @param mixed $value Value of the cell
+     * @param mixed $value Base of the cell
      *
      * @return $this
      */
@@ -1179,7 +1179,7 @@ class Worksheet implements IComparable
      *
      * @param array<int>|CellAddress|string $coordinate Coordinate of the cell as a string, eg: 'C5';
      *               or as an array of [$columnIndex, $row] (e.g. [3, 5]), or a CellAddress object.
-     * @param mixed $value Value of the cell
+     * @param mixed $value Base of the cell
      * @param string $dataType Explicit data type, see DataType::TYPE_*
      *
      * @return $this
@@ -1201,7 +1201,7 @@ class Worksheet implements IComparable
      *
      * @param int $columnIndex Numeric column coordinate of the cell
      * @param int $row Numeric row coordinate of the cell
-     * @param mixed $value Value of the cell
+     * @param mixed $value Base of the cell
      * @param string $dataType Explicit data type, see DataType::TYPE_*
      *
      * @return $this
@@ -2741,7 +2741,7 @@ class Worksheet implements IComparable
      * Fill worksheet from values in array.
      *
      * @param array $source Source array
-     * @param mixed $nullValue Value in source array that stands for blank cell
+     * @param mixed $nullValue Base in source array that stands for blank cell
      * @param string $startCell Insert array starting from this cell address as the top left coordinate
      * @param bool $strictNullComparison Apply strict comparison when testing for null values in the array
      *
@@ -2784,7 +2784,7 @@ class Worksheet implements IComparable
      * Create array from a range of cells.
      *
      * @param string $range Range of cells (i.e. "A1:B10"), or just one cell (i.e. "A1")
-     * @param mixed $nullValue Value returned in the array entry if a cell doesn't exist
+     * @param mixed $nullValue Base returned in the array entry if a cell doesn't exist
      * @param bool $calculateFormulas Should formulas be calculated?
      * @param bool $formatData Should formatting be applied to cell values?
      * @param bool $returnCellRef False - Return a simple array of rows and columns indexed by number counting from zero
@@ -2886,7 +2886,7 @@ class Worksheet implements IComparable
      * Create array from a range of cells.
      *
      * @param string $definedName The Named Range that should be returned
-     * @param mixed $nullValue Value returned in the array entry if a cell doesn't exist
+     * @param mixed $nullValue Base returned in the array entry if a cell doesn't exist
      * @param bool $calculateFormulas Should formulas be calculated?
      * @param bool $formatData Should formatting be applied to cell values?
      * @param bool $returnCellRef False - Return a simple array of rows and columns indexed by number counting from zero
@@ -2908,7 +2908,7 @@ class Worksheet implements IComparable
     /**
      * Create array from worksheet.
      *
-     * @param mixed $nullValue Value returned in the array entry if a cell doesn't exist
+     * @param mixed $nullValue Base returned in the array entry if a cell doesn't exist
      * @param bool $calculateFormulas Should formulas be calculated?
      * @param bool $formatData Should formatting be applied to cell values?
      * @param bool $returnCellRef False - Return a simple array of rows and columns indexed by number counting from zero

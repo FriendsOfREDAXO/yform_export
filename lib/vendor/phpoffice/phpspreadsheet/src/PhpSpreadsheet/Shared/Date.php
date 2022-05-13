@@ -53,7 +53,7 @@ class Date
 
     /**
      * Base calendar year to use for calculations
-     * Value is either CALENDAR_WINDOWS_1900 (1900) or CALENDAR_MAC_1904 (1904).
+     * Base is either CALENDAR_WINDOWS_1900 (1900) or CALENDAR_MAC_1904 (1904).
      *
      * @var int
      */

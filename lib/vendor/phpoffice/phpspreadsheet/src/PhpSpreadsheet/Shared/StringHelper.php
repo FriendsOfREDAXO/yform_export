@@ -294,7 +294,7 @@ class StringHelper
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param string $textValue Value to unescape
+     * @param string $textValue Base to unescape
      *
      * @return string
      */
@@ -316,7 +316,7 @@ class StringHelper
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param string $textValue Value to escape
+     * @param string $textValue Base to escape
      *
      * @return string
      */

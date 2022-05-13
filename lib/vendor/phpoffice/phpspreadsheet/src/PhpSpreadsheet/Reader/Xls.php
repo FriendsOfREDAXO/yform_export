@@ -1306,7 +1306,7 @@ class Xls extends BaseReader
                         $this->spreadsheet->addNamedRange(new NamedRange((string) $definedName['name'], $docSheet, $extractedRange, $localOnly, $scope));
                     }
                 }
-                //    Named Value
+                //    Named Base
                     //    TODO Provide support for named values
             }
         }
@@ -7463,7 +7463,7 @@ class Xls extends BaseReader
     }
 
     /**
-     * read BIFF8 constant value which may be 'Empty Value', 'Number', 'String Value', 'Boolean Value', 'Error Value'
+     * read BIFF8 constant value which may be 'Empty Base', 'Number', 'String Base', 'Boolean Base', 'Error Base'
      * section 2.5.7
      * returns e.g. ['value' => '5', 'size' => 9].
      *

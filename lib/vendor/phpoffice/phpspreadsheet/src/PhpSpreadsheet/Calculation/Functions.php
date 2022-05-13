@@ -325,7 +325,7 @@ class Functions
     /**
      * ERROR_TYPE.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
@@ -342,12 +342,12 @@ class Functions
     /**
      * IS_BLANK.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isBlank()
-     * Use the isBlank() method in the Information\Value class instead
+     * Use the isBlank() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -359,12 +359,12 @@ class Functions
     /**
      * IS_ERR.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isErr()
-     * Use the isErr() method in the Information\Value class instead
+     * Use the isErr() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -376,12 +376,12 @@ class Functions
     /**
      * IS_ERROR.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isError()
-     * Use the isError() method in the Information\Value class instead
+     * Use the isError() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -393,12 +393,12 @@ class Functions
     /**
      * IS_NA.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isNa()
-     * Use the isNa() method in the Information\Value class instead
+     * Use the isNa() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -410,12 +410,12 @@ class Functions
     /**
      * IS_EVEN.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isEven()
-     * Use the isEven() method in the Information\Value class instead
+     * Use the isEven() method in the Information\Base class instead
      *
      * @return array|bool|string
      */
@@ -427,12 +427,12 @@ class Functions
     /**
      * IS_ODD.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isOdd()
-     * Use the isOdd() method in the Information\Value class instead
+     * Use the isOdd() method in the Information\Base class instead
      *
      * @return array|bool|string
      */
@@ -444,12 +444,12 @@ class Functions
     /**
      * IS_NUMBER.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isNumber()
-     * Use the isNumber() method in the Information\Value class instead
+     * Use the isNumber() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -461,12 +461,12 @@ class Functions
     /**
      * IS_LOGICAL.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isLogical()
-     * Use the isLogical() method in the Information\Value class instead
+     * Use the isLogical() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -478,12 +478,12 @@ class Functions
     /**
      * IS_TEXT.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isText()
-     * Use the isText() method in the Information\Value class instead
+     * Use the isText() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -495,12 +495,12 @@ class Functions
     /**
      * IS_NONTEXT.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isNonText()
-     * Use the isNonText() method in the Information\Value class instead
+     * Use the isNonText() method in the Information\Base class instead
      *
      * @return array|bool
      */
@@ -517,7 +517,7 @@ class Functions
      * @Deprecated 1.23.0
      *
      * @see Information\Value::asNumber()
-     * Use the asNumber() method in the Information\Value class instead
+     * Use the asNumber() method in the Information\Base class instead
      *
      * @param null|mixed $value The value you want converted
      *
@@ -543,7 +543,7 @@ class Functions
      * @Deprecated 1.23.0
      *
      * @see Information\Value::type()
-     * Use the type() method in the Information\Value class instead
+     * Use the type() method in the Information\Base class instead
      *
      * @param null|mixed $value The value you want tested
      *
@@ -551,7 +551,7 @@ class Functions
      *        If value is or refers to N returns
      *        A number            1
      *        Text                2
-     *        Logical Value        4
+     *        Logical Base        4
      *        An error value        16
      *        Array or Matrix        64
      */
@@ -666,7 +666,7 @@ class Functions
      * @Deprecated 1.23.0
      *
      * @see Information\Value::isFormula()
-     * Use the isFormula() method in the Information\Value class instead
+     * Use the isFormula() method in the Information\Base class instead
      *
      * @param mixed $cellReference The cell to check
      * @param ?Cell $cell The current cell (containing this formula)

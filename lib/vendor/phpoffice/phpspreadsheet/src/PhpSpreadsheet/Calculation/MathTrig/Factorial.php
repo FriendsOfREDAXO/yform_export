@@ -20,7 +20,7 @@ class Factorial
      * Excel Function:
      *        FACT(factVal)
      *
-     * @param array|float $factVal Factorial Value, or can be an array of numbers
+     * @param array|float $factVal Factorial Base, or can be an array of numbers
      *
      * @return array|float|int|string Factorial, or a string containing an error
      *         If an array of numbers is passed as the argument, then the returned result will also be an array
@@ -62,7 +62,7 @@ class Factorial
      * Excel Function:
      *        FACTDOUBLE(factVal)
      *
-     * @param array|float $factVal Factorial Value, or can be an array of numbers
+     * @param array|float $factVal Factorial Base, or can be an array of numbers
      *
      * @return array|float|int|string Double Factorial, or a string containing an error
      *         If an array of numbers is passed as the argument, then the returned result will also be an array

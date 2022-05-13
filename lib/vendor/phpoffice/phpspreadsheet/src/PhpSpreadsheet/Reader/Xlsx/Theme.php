@@ -61,7 +61,7 @@ class Theme
     }
 
     /**
-     * Get colour Map Value by Position.
+     * Get colour Map Base by Position.
      *
      * @param int $index
      *

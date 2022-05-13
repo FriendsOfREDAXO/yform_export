@@ -47,8 +47,8 @@ class Single
      * Calculates the number of periods required for an investment to reach a specified value.
      *
      * @param mixed $rate Interest rate per period
-     * @param mixed $presentValue Present Value
-     * @param mixed $futureValue Future Value
+     * @param mixed $presentValue Present Base
+     * @param mixed $futureValue Future Base
      *
      * @return float|string Result, or a string containing an error
      */
@@ -80,8 +80,8 @@ class Single
      * Calculates the interest rate required for an investment to grow to a specified future value .
      *
      * @param float $periods The number of periods over which the investment is made
-     * @param float $presentValue Present Value
-     * @param float $futureValue Future Value
+     * @param float $presentValue Present Base
+     * @param float $futureValue Future Base
      *
      * @return float|string Result, or a string containing an error
      */

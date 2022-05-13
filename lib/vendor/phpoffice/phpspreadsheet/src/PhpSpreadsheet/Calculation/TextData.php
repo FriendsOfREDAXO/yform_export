@@ -16,7 +16,7 @@ class TextData
      *
      * @see Use the character() method in the TextData\CharacterConvert class instead
      *
-     * @param string $character Value
+     * @param string $character Base
      *
      * @return array|string
      */
@@ -32,7 +32,7 @@ class TextData
      *
      * @see Use the nonPrintable() method in the TextData\Trim class instead
      *
-     * @param mixed $stringValue Value to check
+     * @param mixed $stringValue Base to check
      *
      * @return null|array|string
      */
@@ -48,7 +48,7 @@ class TextData
      *
      * @see Use the spaces() method in the TextData\Trim class instead
      *
-     * @param mixed $stringValue Value to check
+     * @param mixed $stringValue Base to check
      *
      * @return array|string
      */
@@ -64,7 +64,7 @@ class TextData
      *
      * @see Use the code() method in the TextData\CharacterConvert class instead
      *
-     * @param array|string $characters Value
+     * @param array|string $characters Base
      *
      * @return array|int|string A string if arguments are invalid
      */
@@ -152,7 +152,7 @@ class TextData
      *
      * @see Use the FIXEDFORMAT() method in the TextData\Format class instead
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      * @param int $decimals
      * @param bool $no_commas
      *
@@ -170,7 +170,7 @@ class TextData
      *
      * @see Use the left() method in the TextData\Extract class instead
      *
-     * @param array|string $value Value
+     * @param array|string $value Base
      * @param array|int $chars Number of characters
      *
      * @return array|string
@@ -187,7 +187,7 @@ class TextData
      *
      * @see Use the mid() method in the TextData\Extract class instead
      *
-     * @param array|string $value Value
+     * @param array|string $value Base
      * @param array|int $start Start character
      * @param array|int $chars Number of characters
      *
@@ -205,7 +205,7 @@ class TextData
      *
      * @see Use the right() method in the TextData\Extract class instead
      *
-     * @param array|string $value Value
+     * @param array|string $value Base
      * @param array|int $chars Number of characters
      *
      * @return array|string
@@ -222,7 +222,7 @@ class TextData
      *
      * @see Use the length() method in the TextData\Text class instead
      *
-     * @param string $value Value
+     * @param string $value Base
      *
      * @return array|int
      */
@@ -311,9 +311,9 @@ class TextData
      *
      * @see Use the substitute() method in the TextData\Replace class instead
      *
-     * @param string $text Value
-     * @param string $fromText From Value
-     * @param string $toText To Value
+     * @param string $text Base
+     * @param string $fromText From Base
+     * @param string $toText To Base
      * @param int $instance Instance Number
      *
      * @return array|string
@@ -330,7 +330,7 @@ class TextData
      *
      * @see Use the test() method in the TextData\Text class instead
      *
-     * @param mixed $testValue Value to check
+     * @param mixed $testValue Base to check
      *
      * @return null|array|string
      */
@@ -346,7 +346,7 @@ class TextData
      *
      * @see Use the TEXTFORMAT() method in the TextData\Format class instead
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      * @param string $format Format mask to use
      *
      * @return array|string
@@ -363,7 +363,7 @@ class TextData
      *
      * @see Use the VALUE() method in the TextData\Format class instead
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @return array|DateTimeInterface|float|int|string A string if arguments are invalid
      */
@@ -379,7 +379,7 @@ class TextData
      *
      * @see Use the NUMBERVALUE() method in the TextData\Format class instead
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      * @param string $decimalSeparator decimal separator, defaults to locale defined value
      * @param string $groupSeparator group/thosands separator, defaults to locale defined value
      *

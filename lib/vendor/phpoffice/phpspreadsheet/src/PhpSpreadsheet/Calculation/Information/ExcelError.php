@@ -28,7 +28,7 @@ class ExcelError
     /**
      * ERROR_TYPE.
      *
-     * @param mixed $value Value to check
+     * @param mixed $value Base to check
      *
      * @return array|int|string
      */

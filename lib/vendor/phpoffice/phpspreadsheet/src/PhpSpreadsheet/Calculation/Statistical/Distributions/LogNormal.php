@@ -101,7 +101,7 @@ class LogNormal
      *
      * @param mixed $probability Float probability for which we want the value
      *                      Or can be an array of values
-     * @param mixed $mean Mean Value as a float
+     * @param mixed $mean Mean Base as a float
      *                      Or can be an array of values
      * @param mixed $stdDev Standard Deviation as a float
      *                      Or can be an array of values

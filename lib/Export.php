@@ -33,19 +33,15 @@ class Export
 
     /**
      * get available choice names
-     * @return array
+     * @return void
      */
-    private function getChoiceNames(): array {
+    private function setChoices(): void {
         $choices = $this->table->getValueFields(['type_name' => 'choice']);
-        $choiceNames = [];
 
         foreach ($choices as $choice) {
             $name = $choice->getName();
-            $choiceNames[] = $name;
             $this->choices[$name] = $this->resolveChoices($name, $choice);
         }
-
-        return $choiceNames;
     }
 
     /**
@@ -75,19 +71,16 @@ class Export
         $types = [
             'datetime',
             'date',
+            'choice',
+            'be_link',
         ];
-
-        $choices = $this->getChoiceNames();
 
         $i = 2;
         foreach ($this->table->getColumns() as $column) {
-            if (in_array($column['type'], $types, true)) {
-                $this->columnTypes[$i] = $column['type'];
+            $valueType = $this->table->getValueField($column['name'])->getTypeName();
+            if (in_array($valueType, $types, true)) {
+                $this->columnTypes[$i] = $valueType;
             }
-            elseif (in_array($column['name'], $choices, true)) {
-                $this->columnTypes[$i] = 'choice';
-            }
-
             $i++;
         }
     }
@@ -139,6 +132,9 @@ class Export
         /** set relations */
         $this->setRelations();
 
+        /** set choices */
+        $this->setChoices();
+
         /** set column types to format cells */
         $this->setColumnTypes();
 
@@ -169,6 +165,17 @@ class Export
                         case 'choice':
                             if('' !== $value) {
                                 $this->sheet->setCellValue([$c, $r], $this->choices[$name][$value]);
+                            }
+                            break;
+                        case 'be_link':
+                            if('' !== $value) {
+                                $article = \rex_article::get($value);
+                                if(\rex_article::get($value)) {
+                                    $cell = $this->sheet->getCell([$c, $r]);
+                                    $this->sheet->setCellValue([$c, $r], $article->getName())
+                                        ->getHyperlink($cell->getCoordinate())
+                                        ->setUrl(\rex::getServer().$article->getUrl());
+                                }
                             }
                             break;
                         default:

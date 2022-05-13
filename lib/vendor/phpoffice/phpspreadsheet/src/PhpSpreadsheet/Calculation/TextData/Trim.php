@@ -11,7 +11,7 @@ class Trim
     /**
      * CLEAN.
      *
-     * @param mixed $stringValue String Value to check
+     * @param mixed $stringValue String Base to check
      *                              Or can be an array of values
      *
      * @return null|array|string
@@ -32,7 +32,7 @@ class Trim
     /**
      * TRIM.
      *
-     * @param mixed $stringValue String Value to check
+     * @param mixed $stringValue String Base to check
      *                              Or can be an array of values
      *
      * @return array|string

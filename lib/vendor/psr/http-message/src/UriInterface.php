@@ -2,7 +2,7 @@
 namespace Psr\Http\Message;
 
 /**
- * Value object representing a URI.
+ * Base object representing a URI.
  *
  * This interface is meant to represent URIs according to RFC 3986 and to
  * provide methods for most common operations. Additional functionality for

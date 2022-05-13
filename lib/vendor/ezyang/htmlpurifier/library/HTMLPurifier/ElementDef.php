@@ -72,7 +72,7 @@ class HTMLPurifier_ElementDef
     public $content_model;
 
     /**
-     * Value of $child->type, used to determine which ChildDef to use,
+     * Base of $child->type, used to determine which ChildDef to use,
      * used in combination with $content_model.
      * @warning This must be lowercase
      * @warning This is a temporary variable that is not available after

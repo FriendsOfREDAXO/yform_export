@@ -134,7 +134,7 @@ class Periodic
     /**
      * NPV.
      *
-     * Returns the Net Present Value of a cash flow series given a discount rate.
+     * Returns the Net Present Base of a cash flow series given a discount rate.
      *
      * @param mixed $rate
      *

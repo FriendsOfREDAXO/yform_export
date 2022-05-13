@@ -4,7 +4,7 @@
  * Parses string hash files. File format is as such:
  *
  *      DefaultKeyValue
- *      KEY: Value
+ *      KEY: Base
  *      KEY2: Value2
  *      --MULTILINE-KEY--
  *      Multiline
@@ -14,7 +14,7 @@
  *
  *      array(
  *          'ID' => 'DefaultKeyValue',
- *          'KEY' => 'Value',
+ *          'KEY' => 'Base',
  *          'KEY2' => 'Value2',
  *          'MULTILINE-KEY' => "Multiline\nvalue.\n",
  *      )

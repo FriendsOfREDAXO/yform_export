@@ -55,7 +55,7 @@ class CellValue extends WizardAbstract implements WizardInterface
     protected function operator(string $operator): void
     {
         if ((!isset(self::SINGLE_OPERATORS[$operator])) && (!isset(self::RANGE_OPERATORS[$operator]))) {
-            throw new Exception('Invalid Operator for Cell Value CF Rule Wizard');
+            throw new Exception('Invalid Operator for Cell Base CF Rule Wizard');
         }
 
         $this->operator = $operator;
@@ -127,7 +127,7 @@ class CellValue extends WizardAbstract implements WizardInterface
     public static function fromConditional(Conditional $conditional, string $cellRange = 'A1'): WizardInterface
     {
         if ($conditional->getConditionType() !== Conditional::CONDITION_CELLIS) {
-            throw new Exception('Conditional is not a Cell Value CF Rule conditional');
+            throw new Exception('Conditional is not a Cell Base CF Rule conditional');
         }
 
         $wizard = new self($cellRange);
@@ -168,12 +168,12 @@ class CellValue extends WizardAbstract implements WizardInterface
     public function __call($methodName, $arguments): self
     {
         if (!isset(self::MAGIC_OPERATIONS[$methodName]) && $methodName !== 'and') {
-            throw new Exception('Invalid Operator for Cell Value CF Rule Wizard');
+            throw new Exception('Invalid Operator for Cell Base CF Rule Wizard');
         }
 
         if ($methodName === 'and') {
             if (!isset(self::RANGE_OPERATORS[$this->operator])) {
-                throw new Exception('AND Value is only appropriate for range operators');
+                throw new Exception('AND Base is only appropriate for range operators');
             }
 
             $this->operand(1, ...$arguments);

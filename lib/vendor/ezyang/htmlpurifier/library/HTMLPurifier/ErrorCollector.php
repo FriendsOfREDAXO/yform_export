@@ -89,7 +89,7 @@ class HTMLPurifier_ErrorCollector
         if (!is_null($attr)) {
             $subst['$CurrentAttr.Name'] = $attr;
             if (isset($token->attr[$attr])) {
-                $subst['$CurrentAttr.Value'] = $token->attr[$attr];
+                $subst['$CurrentAttr.Base'] = $token->attr[$attr];
             }
         }
 

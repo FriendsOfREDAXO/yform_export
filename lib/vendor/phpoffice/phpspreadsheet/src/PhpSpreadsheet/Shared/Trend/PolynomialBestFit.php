@@ -32,11 +32,11 @@ class PolynomialBestFit extends BestFit
     }
 
     /**
-     * Return the Y-Value for a specified value of X.
+     * Return the Y-Base for a specified value of X.
      *
-     * @param float $xValue X-Value
+     * @param float $xValue X-Base
      *
-     * @return float Y-Value
+     * @return float Y-Base
      */
     public function getValueOfYForX($xValue)
     {
@@ -53,11 +53,11 @@ class PolynomialBestFit extends BestFit
     }
 
     /**
-     * Return the X-Value for a specified value of Y.
+     * Return the X-Base for a specified value of Y.
      *
-     * @param float $yValue Y-Value
+     * @param float $yValue Y-Base
      *
-     * @return float X-Value
+     * @return float X-Base
      */
     public function getValueOfXForY($yValue)
     {

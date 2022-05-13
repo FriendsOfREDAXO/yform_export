@@ -115,7 +115,7 @@ class HTMLPurifier_Printer_ConfigForm extends HTMLPurifier_Printer
         $ret .= $this->start('thead');
         $ret .= $this->start('tr');
         $ret .= $this->element('th', 'Directive', array('class' => 'hp-directive'));
-        $ret .= $this->element('th', 'Value', array('class' => 'hp-value'));
+        $ret .= $this->element('th', 'Base', array('class' => 'hp-value'));
         $ret .= $this->end('tr');
         $ret .= $this->end('thead');
         foreach ($all as $ns => $directives) {

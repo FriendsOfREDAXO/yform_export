@@ -42,7 +42,7 @@ class AddressHelper
         }
 
         if ($columnReference <= 0 || $rowReference <= 0) {
-            throw new Exception('Invalid R1C1-format Cell Reference, Value out of range');
+            throw new Exception('Invalid R1C1-format Cell Reference, Base out of range');
         }
         $A1CellReference = Coordinate::stringFromColumnIndex($columnReference) . $rowReference;
 
