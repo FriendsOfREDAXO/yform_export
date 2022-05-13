@@ -3,6 +3,7 @@
 namespace YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Writer\Exception;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -93,7 +94,9 @@ class Export
         $columnTypes = [];
         $types = [
             'datetime',
+            'datestamp',
             'date',
+            'time',
             'choice',
             'checkbox',
             'be_link',
@@ -190,11 +193,19 @@ class Export
                 if (isset($this->columnTypes[$c])) {
                     switch ($this->columnTypes[$c]) {
                         case 'datetime':
+                        case 'datestamp':
                             $this->sheet->setCellValue([$c, $r], Date::PHPToExcel($value));
                             $this->sheet
                                 ->getStyle([$c, $r, $c, $r])
                                 ->getNumberFormat()
                                 ->setFormatCode('dd/mm/yyyy hh:mm:ss');
+                            break;
+                        case 'date':
+                            $this->sheet->setCellValue([$c, $r], Date::PHPToExcel($value));
+                            $this->sheet
+                                ->getStyle([$c, $r, $c, $r])
+                                ->getNumberFormat()
+                                ->setFormatCode(NumberFormat::FORMAT_DATE_DDMMYYYY);
                             break;
                         case 'choice':
                             if('' !== $value) {
