@@ -14,6 +14,7 @@ class Export
     private array $relationsMap;
     private array $columnTypes;
     private array $choices;
+    private array $checkboxes;
     private Spreadsheet $spreadsheet;
     private Worksheet $sheet;
 
@@ -61,6 +62,28 @@ class Export
         ]);
     }
 
+    /**
+     * get available checkbox names
+     * @return void
+     */
+    private function setCheckboxes(): void {
+        $checkboxes = $this->table->getValueFields(['type_name' => 'checkbox']);
+
+        foreach ($checkboxes as $checkbox) {
+            $name = $checkbox->getName();
+            $this->checkboxes[$name] = $this->resolveCheckboxes($checkbox);
+        }
+    }
+
+    /**
+     * resolve checkbox values
+     * @param \rex_yform_manager_field $field
+     * @return mixed
+     */
+    private function resolveCheckboxes(\rex_yform_manager_field $field):array {
+        $values = $field->getElement('output_values');
+        return $values ? explode(',', $values) : [0,1];
+    }
 
     /**
      * set column types
@@ -72,13 +95,20 @@ class Export
             'datetime',
             'date',
             'choice',
+            'checkbox',
             'be_link',
             'be_media',
         ];
 
         $i = 2;
         foreach ($this->table->getColumns() as $column) {
-            $valueType = $this->table->getValueField($column['name'])->getTypeName();
+            $valueField = $this->table->getValueField($column['name']);
+
+            if(!$valueField) {
+                continue;
+            }
+
+            $valueType = $valueField->getTypeName();
             if (in_array($valueType, $types, true)) {
                 $this->columnTypes[$i] = $valueType;
             }
@@ -133,6 +163,9 @@ class Export
         /** set relations */
         $this->setRelations();
 
+        /** set checkboxes */
+        $this->setCheckboxes();
+
         /** set choices */
         $this->setChoices();
 
@@ -166,6 +199,11 @@ class Export
                         case 'choice':
                             if('' !== $value) {
                                 $this->sheet->setCellValue([$c, $r], $this->choices[$name][$value]);
+                            }
+                            break;
+                        case 'checkbox':
+                            if('' !== $value) {
+                                $this->sheet->setCellValue([$c, $r], $this->checkboxes[$name][$value]);
                             }
                             break;
                         case 'be_link':
