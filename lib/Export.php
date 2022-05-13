@@ -73,6 +73,7 @@ class Export
             'date',
             'choice',
             'be_link',
+            'be_media',
         ];
 
         $i = 2;
@@ -170,11 +171,22 @@ class Export
                         case 'be_link':
                             if('' !== $value) {
                                 $article = \rex_article::get($value);
-                                if(\rex_article::get($value)) {
+                                if($article) {
                                     $cell = $this->sheet->getCell([$c, $r]);
                                     $this->sheet->setCellValue([$c, $r], $article->getName())
                                         ->getHyperlink($cell->getCoordinate())
                                         ->setUrl(\rex::getServer().$article->getUrl());
+                                }
+                            }
+                            break;
+                        case 'be_media':
+                            if('' !== $value) {
+                                $media = \rex_media::get($value);
+                                if($media) {
+                                    $cell = $this->sheet->getCell([$c, $r]);
+                                    $this->sheet->setCellValue([$c, $r], $media->getFileName())
+                                        ->getHyperlink($cell->getCoordinate())
+                                        ->setUrl(\rex::getServer().$media->getUrl());
                                 }
                             }
                             break;
