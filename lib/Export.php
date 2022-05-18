@@ -1,5 +1,4 @@
 <?php
-
 namespace YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -101,6 +100,7 @@ class Export
             'checkbox',
             'be_link',
             'be_media',
+            'imagelist',
         ];
 
         $i = 2;
@@ -191,6 +191,8 @@ class Export
 
                 /** format cell */
                 if (isset($this->columnTypes[$c])) {
+                    $cell = $this->sheet->getCell([$c, $r]);
+
                     switch ($this->columnTypes[$c]) {
                         case 'datetime':
                         case 'datestamp':
@@ -221,7 +223,6 @@ class Export
                             if('' !== $value) {
                                 $article = \rex_article::get($value);
                                 if($article) {
-                                    $cell = $this->sheet->getCell([$c, $r]);
                                     $this->sheet->setCellValue([$c, $r], $article->getName())
                                         ->getHyperlink($cell->getCoordinate())
                                         ->setUrl(\rex::getServer().$article->getUrl());
@@ -230,13 +231,21 @@ class Export
                             break;
                         case 'be_media':
                             if('' !== $value) {
-                                $media = \rex_media::get($value);
-                                if($media) {
-                                    $cell = $this->sheet->getCell([$c, $r]);
-                                    $this->sheet->setCellValue([$c, $r], $media->getFileName())
-                                        ->getHyperlink($cell->getCoordinate())
-                                        ->setUrl(\rex::getServer().$media->getUrl());
+                                $this->sheet->setCellValue([$c, $r], $value)
+                                    ->getHyperlink($cell->getCoordinate())
+                                    ->setUrl($this->getMediaUrl($value));
+                            }
+                            break;
+                        case 'imagelist':
+                            if('' !== $value) {
+                                $images = explode(',', $value);
+                                $imageList = [];
+                                foreach ($images as $image) {
+                                    $imageList[] = $this->getMediaUrl($image);
                                 }
+                                $this->sheet->setCellValue([$c, $r], implode("\r", $imageList))
+                                    ->getStyle($cell->getCoordinate())
+                                    ->getAlignment()->setWrapText(true);
                             }
                             break;
                         default:
@@ -287,5 +296,14 @@ class Export
          * fix first row/labels
          */
         $this->sheet->freezePane([1, 2]);
+    }
+
+    /**
+     * get the absolute media url
+     * @param string $fileName
+     * @return string
+     */
+    private function getMediaUrl(string $fileName): string {
+        return \rex::getServer() . 'media/' . $fileName;
     }
 }
