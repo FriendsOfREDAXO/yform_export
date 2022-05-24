@@ -1,6 +1,6 @@
-# :construction: WIP YForm 4 .xlsx Export für REDAXO 5
+# YForm 4 .xlsx Export für REDAXO 5
 
-Exportiert YForm Tabellen als `.xlsx`
+Exportiert YForm Tabellendaten als `.xlsx`
 
 ---
 
