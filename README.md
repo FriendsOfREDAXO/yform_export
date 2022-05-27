@@ -11,7 +11,7 @@ Nach der Installation ist in der Edit-Ansicht der Tabelle ein neuer Button („e
 
 ## Lizenz
 
-[MIT Lizenz](yform_export/blob/master/LICENSE)
+[MIT Lizenz](LICENSE)
 
 ## Autoren
 
