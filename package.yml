@@ -1,5 +1,5 @@
 package: yform_export
-version: '0.0.1-dev'
+version: '0.0.1'
 author: eaCe
 supportpage: https://github.com/eaCe/yform_export
 
@@ -14,11 +14,17 @@ installer_ignore:
     - .git
     - .gitignore
     - .github
+    - tests
+    - .tools
     - package.json
     - yarn.lock
     - resources
     - .editorconfig
     - .eslintrc.js
     - .stylelintrc.js
+    - phpcs.xml
+    - phpunit.xml.dist
+    - composer.json
+    - composer
     - lib/composer.json
     - lib/composer.lock

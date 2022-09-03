@@ -1,4 +1,5 @@
 <?php
+
 namespace YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -23,7 +24,8 @@ class Export
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \rex_sql_exception
      */
-    public function __construct() {
+    public function __construct()
+    {
         $func = \rex_request('func', 'string', '');
 
         if ('yform_table_export' === $func && \rex_get('table')) {
@@ -36,7 +38,8 @@ class Export
      * get available choice names
      * @return void
      */
-    private function setChoices(): void {
+    private function setChoices(): void
+    {
         $choices = $this->table->getValueFields(['type_name' => 'choice']);
 
         foreach ($choices as $choice) {
@@ -51,7 +54,8 @@ class Export
      * @param \rex_yform_manager_field $field
      * @return mixed
      */
-    private function resolveChoices(string $columnName, \rex_yform_manager_field $field):array {
+    private function resolveChoices(string $columnName, \rex_yform_manager_field $field): array
+    {
         return \rex_yform_value_choice::getListValues([
             'field' => $columnName,
             'choices' => $field->getElement('choices'),
@@ -66,7 +70,8 @@ class Export
      * get available checkbox names
      * @return void
      */
-    private function setCheckboxes(): void {
+    private function setCheckboxes(): void
+    {
         $checkboxes = $this->table->getValueFields(['type_name' => 'checkbox']);
 
         foreach ($checkboxes as $checkbox) {
@@ -80,16 +85,18 @@ class Export
      * @param \rex_yform_manager_field $field
      * @return mixed
      */
-    private function resolveCheckboxes(\rex_yform_manager_field $field):array {
+    private function resolveCheckboxes(\rex_yform_manager_field $field): array
+    {
         $values = $field->getElement('output_values');
-        return $values ? explode(',', $values) : [0,1];
+        return $values ? explode(',', $values) : [0, 1];
     }
 
     /**
      * set column types
      * @return void
      */
-    private function setColumnTypes(): void {
+    private function setColumnTypes(): void
+    {
         $columnTypes = [];
         $types = [
             'datetime',
@@ -107,7 +114,7 @@ class Export
         foreach ($this->table->getColumns() as $column) {
             $valueField = $this->table->getValueField($column['name']);
 
-            if(!$valueField) {
+            if (!$valueField) {
                 continue;
             }
 
@@ -123,7 +130,8 @@ class Export
      * set table relations
      * @return void
      */
-    private function setRelations(): void {
+    private function setRelations(): void
+    {
         $tableRelations = $this->table->getRelations();
         $relations = [];
 
@@ -148,7 +156,8 @@ class Export
      * @throws Exception
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    private function exportTableSet(): void {
+    private function exportTableSet(): void
+    {
         $sql = \rex_sql::factory();
         $data = $sql->getArray('SELECT * FROM ' . $this->table->getTableName());
 
@@ -210,34 +219,34 @@ class Export
                                 ->setFormatCode(NumberFormat::FORMAT_DATE_DDMMYYYY);
                             break;
                         case 'choice':
-                            if('' !== $value) {
+                            if ('' !== $value) {
                                 $this->sheet->setCellValue([$c, $r], $this->choices[$name][$value]);
                             }
                             break;
                         case 'checkbox':
-                            if('' !== $value) {
+                            if ('' !== $value) {
                                 $this->sheet->setCellValue([$c, $r], $this->checkboxes[$name][$value]);
                             }
                             break;
                         case 'be_link':
-                            if('' !== $value) {
+                            if ('' !== $value) {
                                 $article = \rex_article::get($value);
-                                if($article) {
+                                if ($article) {
                                     $this->sheet->setCellValue([$c, $r], $article->getName())
                                         ->getHyperlink($cell->getCoordinate())
-                                        ->setUrl(\rex::getServer().$article->getUrl());
+                                        ->setUrl(\rex::getServer() . $article->getUrl());
                                 }
                             }
                             break;
                         case 'be_media':
-                            if('' !== $value) {
+                            if ('' !== $value) {
                                 $this->sheet->setCellValue([$c, $r], $value)
                                     ->getHyperlink($cell->getCoordinate())
                                     ->setUrl($this->getMediaUrl($value));
                             }
                             break;
                         case 'imagelist':
-                            if('' !== $value) {
+                            if ('' !== $value) {
                                 $images = explode(',', $value);
                                 $imageList = [];
                                 foreach ($images as $image) {
@@ -278,7 +287,8 @@ class Export
      * @return void
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    private function setHeader(array $data): void {
+    private function setHeader(array $data): void
+    {
         $i = 1;
         foreach ($data as $name => $value) {
             $label = $name;
@@ -303,7 +313,8 @@ class Export
      * @param string $fileName
      * @return string
      */
-    private function getMediaUrl(string $fileName): string {
+    private function getMediaUrl(string $fileName): string
+    {
         return \rex::getServer() . 'media/' . $fileName;
     }
 }

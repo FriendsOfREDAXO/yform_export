@@ -10,7 +10,8 @@ class ExtensionPoints
      * @return void
      * @throws \rex_exception
      */
-    public static function YFORM_DATA_LIST_LINKS(\rex_extension_point $ep): void {
+    public static function YFORM_DATA_LIST_LINKS(\rex_extension_point $ep): void // phpcs:ignore
+    {
         $linkSets = $ep->getSubject();
         /** @var \rex_yform_manager_table $table */
         $table = $ep->getParams()['table'];
