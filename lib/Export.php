@@ -3,15 +3,26 @@
 namespace YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
-use PhpOffice\PhpSpreadsheet\Writer\Exception;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Writer\Exception;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use rex;
+use rex_article;
+use rex_sql;
+use rex_sql_exception;
+use rex_yform_manager_field;
+use rex_yform_manager_table;
+use rex_yform_value_be_manager_relation;
+use rex_yform_value_choice;
+
+use function array_key_exists;
+use function in_array;
 
 class Export
 {
-    private \rex_yform_manager_table $table;
+    private rex_yform_manager_table $table;
     private array $relationsMap;
     private array $columnTypes;
     private array $choices;
@@ -22,21 +33,20 @@ class Export
     /**
      * @throws Exception
      * @throws \PhpOffice\PhpSpreadsheet\Exception
-     * @throws \rex_sql_exception
+     * @throws rex_sql_exception
      */
     public function __construct()
     {
-        $func = \rex_request('func', 'string', '');
+        $func = rex_request('func', 'string', '');
 
-        if ('yform_table_export' === $func && \rex_get('table')) {
-            $this->table = \rex_yform_manager_table::get(\rex_get('table', 'string'));
+        if ('yform_table_export' === $func && rex_get('table')) {
+            $this->table = rex_yform_manager_table::get(rex_get('table', 'string'));
             $this->exportTableSet();
         }
     }
 
     /**
-     * get available choice names
-     * @return void
+     * get available choice names.
      */
     private function setChoices(): void
     {
@@ -49,14 +59,12 @@ class Export
     }
 
     /**
-     * resolve choice values
-     * @param string $columnName
-     * @param \rex_yform_manager_field $field
+     * resolve choice values.
      * @return mixed
      */
-    private function resolveChoices(string $columnName, \rex_yform_manager_field $field): array
+    private function resolveChoices(string $columnName, rex_yform_manager_field $field): array
     {
-        return \rex_yform_value_choice::getListValues([
+        return rex_yform_value_choice::getListValues([
             'field' => $columnName,
             'choices' => $field->getElement('choices'),
             'params' => [
@@ -67,8 +75,7 @@ class Export
     }
 
     /**
-     * get available checkbox names
-     * @return void
+     * get available checkbox names.
      */
     private function setCheckboxes(): void
     {
@@ -81,19 +88,17 @@ class Export
     }
 
     /**
-     * resolve checkbox values
-     * @param \rex_yform_manager_field $field
+     * resolve checkbox values.
      * @return mixed
      */
-    private function resolveCheckboxes(\rex_yform_manager_field $field): array
+    private function resolveCheckboxes(rex_yform_manager_field $field): array
     {
         $values = $field->getElement('output_values');
         return $values ? explode(',', $values) : [0, 1];
     }
 
     /**
-     * set column types
-     * @return void
+     * set column types.
      */
     private function setColumnTypes(): void
     {
@@ -122,13 +127,12 @@ class Export
             if (in_array($valueType, $types, true)) {
                 $this->columnTypes[$i] = $valueType;
             }
-            $i++;
+            ++$i;
         }
     }
 
     /**
-     * set table relations
-     * @return void
+     * set table relations.
      */
     private function setRelations(): void
     {
@@ -137,7 +141,7 @@ class Export
 
         if ($tableRelations) {
             foreach ($tableRelations as $column => $field) {
-                $relations[$column] = \rex_yform_value_be_manager_relation::getListValues($field->getElement('table'), $field->getElement('field'));
+                $relations[$column] = rex_yform_value_be_manager_relation::getListValues($field->getElement('table'), $field->getElement('field'));
             }
 
             $i = 2;
@@ -146,23 +150,23 @@ class Export
                     $this->relationsMap[$i] = $relations[$column['name']];
                 }
 
-                $i++;
+                ++$i;
             }
         }
     }
 
     /**
-     * @throws \rex_sql_exception
+     * @throws rex_sql_exception
      * @throws Exception
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function exportTableSet(): void
     {
-        $sql = \rex_sql::factory();
+        $sql = rex_sql::factory();
         $data = $sql->getArray('SELECT * FROM ' . $this->table->getTableName());
 
-        if ($data === null) {
-            exit();
+        if (null === $data) {
+            exit;
         }
 
         /** create the spreadsheet */
@@ -230,11 +234,11 @@ class Export
                             break;
                         case 'be_link':
                             if ('' !== $value) {
-                                $article = \rex_article::get($value);
+                                $article = rex_article::get($value);
                                 if ($article) {
                                     $this->sheet->setCellValue([$c, $r], $article->getName())
                                         ->getHyperlink($cell->getCoordinate())
-                                        ->setUrl(\rex::getServer() . $article->getUrl());
+                                        ->setUrl(rex::getServer() . $article->getUrl());
                                 }
                             }
                             break;
@@ -261,30 +265,27 @@ class Export
                             $this->sheet->setCellValue([$c, $r], $value);
                             break;
                     }
-                }
-                else {
+                } else {
                     $this->sheet->setCellValue([$c, $r], $value);
                 }
 
                 /** set auto width */
                 $this->sheet->getColumnDimension($column)->setAutoSize(true);
 
-                $c++;
+                ++$c;
             }
-            $r++;
+            ++$r;
         }
 
         $writer = new Xlsx($this->spreadsheet);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="' . urlencode(time() . '_' . $this->table->getTableName() . '.xlsx') . '"');
         $writer->save('php://output');
-        exit();
+        exit;
     }
 
     /**
-     * set table/sheet header
-     * @param array $data
-     * @return void
+     * set table/sheet header.
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function setHeader(array $data): void
@@ -299,22 +300,20 @@ class Export
             }
 
             $this->sheet->setCellValue([$i, 1], $label);
-            $i++;
+            ++$i;
         }
 
         /**
-         * fix first row/labels
+         * fix first row/labels.
          */
         $this->sheet->freezePane([1, 2]);
     }
 
     /**
-     * get the absolute media url
-     * @param string $fileName
-     * @return string
+     * get the absolute media url.
      */
     private function getMediaUrl(string $fileName): string
     {
-        return \rex::getServer() . 'media/' . $fileName;
+        return rex::getServer() . 'media/' . $fileName;
     }
 }

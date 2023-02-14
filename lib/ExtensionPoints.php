@@ -2,18 +2,22 @@
 
 namespace YFormExport;
 
+use rex_exception;
+use rex_extension_point;
+use rex_i18n;
+use rex_url;
+use rex_yform_manager_table;
+
 class ExtensionPoints
 {
     /**
-     * add export button
-     * @param \rex_extension_point $ep
-     * @return void
-     * @throws \rex_exception
+     * add export button.
+     * @throws rex_exception
      */
-    public static function YFORM_DATA_LIST_LINKS(\rex_extension_point $ep): void // phpcs:ignore
+    public static function YFORM_DATA_LIST_LINKS(rex_extension_point $ep): void // phpcs:ignore
     {
         $linkSets = $ep->getSubject();
-        /** @var \rex_yform_manager_table $table */
+        /** @var rex_yform_manager_table $table */
         $table = $ep->getParams()['table'];
 
         $linkParams = [
@@ -22,11 +26,11 @@ class ExtensionPoints
         ];
 
         $item = [];
-        $item['label'] = '<i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;' . \rex_i18n::msg('yform_manager_export');
-        $item['url'] = \rex_url::currentBackendPage() . '&' . http_build_query($linkParams);
+        $item['label'] = '<i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;' . rex_i18n::msg('yform_manager_export');
+        $item['url'] = rex_url::currentBackendPage() . '&' . http_build_query($linkParams);
         $item['attributes']['class'][] = 'btn-info';
         $item['attributes']['id'] = 'yform-export-table';
-//        $item['attributes']['download'] = '';
+        //        $item['attributes']['download'] = '';
 
         /** add export button to table links */
         $linkSets['table_links'][] = $item;
