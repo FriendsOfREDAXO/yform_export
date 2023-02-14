@@ -12,9 +12,11 @@ use rex;
 use rex_article;
 use rex_sql;
 use rex_sql_exception;
+use rex_string;
 use rex_yform_manager_field;
 use rex_yform_manager_table;
 use rex_yform_value_be_manager_relation;
+
 use rex_yform_value_choice;
 
 use function array_key_exists;
@@ -174,7 +176,7 @@ class Export
         $this->sheet = $this->spreadsheet->getActiveSheet();
 
         /** set worksheet name */
-        $this->sheet->setTitle($this->table->getName());
+        $this->sheet->setTitle(rex_string::normalize(preg_replace('/[^a-zA-Z0-9]/', '', $this->table->getName())));
 
         /** set relations */
         $this->setRelations();
