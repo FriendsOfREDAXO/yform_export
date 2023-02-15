@@ -1,7 +1,6 @@
 # YForm 4 .xlsx Export für REDAXO 5
 
-Das Addon ermöglicht einen einfachen Export von YForm-Datentabellen in das `.xlsx`-Format.
-Nach der Installation ist in der Edit-Ansicht der Tabelle ein neuer Button („exportieren“) verfügbar. Klickt man auf diesen wird die Tabelle im .xlsl-Format exportiert.
+Das Addon ermöglicht einen einfachen Export von YForm-Datentabellen in das `.xlsx`-Format. Nach der Installation ist in der Edit-Ansicht der Tabelle ein neuer Button („exportieren“) verfügbar. Klickt man auf diesen, wird die Tabelle im `.xlsx`-Format exportiert.
 
 ---
 
