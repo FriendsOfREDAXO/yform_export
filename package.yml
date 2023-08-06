@@ -1,14 +1,15 @@
 package: yform_export
-version: '0.0.1'
+version: '0.0.11'
 author: eaCe
 supportpage: https://github.com/eaCe/yform_export
 
 requires:
     packages:
         yform: '^4.0.0'
-    redaxo: '^5.10.0'
+    redaxo: '^5.12.0'
     php:
-        version: '>=7.4'
+        version: '>=8.0'
+
 installer_ignore:
     - node_modules
     - .git

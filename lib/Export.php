@@ -143,7 +143,10 @@ class Export
 
         if ($tableRelations) {
             foreach ($tableRelations as $column => $field) {
-                $relations[$column] = rex_yform_value_be_manager_relation::getListValues($field->getElement('table'), $field->getElement('field'));
+                $relations[$column] = rex_yform_value_be_manager_relation::getListValues(
+                    $field->getElement('table'),
+                    $field->getElement('field'),
+                );
             }
 
             $i = 2;
@@ -189,6 +192,12 @@ class Export
 
         /** set column types to format cells */
         $this->setColumnTypes();
+
+        /** exit early if $data is empty */
+        if (empty($data)) {
+            rex::setProperty('yform_export_data_empty', true);
+            return;
+        }
 
         /** set header labels */
         $this->setHeader($data[0]);
@@ -281,7 +290,11 @@ class Export
 
         $writer = new Xlsx($this->spreadsheet);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment; filename="' . urlencode(time() . '_' . $this->table->getTableName() . '.xlsx') . '"');
+        header(
+            'Content-Disposition: attachment; filename="' . urlencode(
+                time() . '_' . $this->table->getTableName() . '.xlsx',
+            ) . '"',
+        );
         $writer->save('php://output');
         exit;
     }
