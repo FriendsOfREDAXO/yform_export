@@ -184,7 +184,7 @@ class MathTrig
      *
      * @Deprecated 1.18.0
      *
-     * @param array|float $factVal Factorial Base
+     * @param array|float $factVal Factorial Value
      *
      * @return array|float|int|string Factorial, or a string containing an error
      *
@@ -206,7 +206,7 @@ class MathTrig
      *
      * @Deprecated 1.18.0
      *
-     * @param array|float $factVal Factorial Base
+     * @param array|float $factVal Factorial Value
      *
      * @return array|float|int|string Double Factorial, or a string containing an error
      *

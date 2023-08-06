@@ -185,7 +185,7 @@ class Rule
     private $ruleType = self::AUTOFILTER_RULETYPE_FILTER;
 
     /**
-     * Autofilter Rule Base.
+     * Autofilter Rule Value.
      *
      * @var int|int[]|string|string[]
      */
@@ -199,7 +199,7 @@ class Rule
     private $operator = self::AUTOFILTER_COLUMN_RULE_EQUAL;
 
     /**
-     * DateTimeGrouping Group Base.
+     * DateTimeGrouping Group Value.
      *
      * @var string
      */
@@ -250,7 +250,7 @@ class Rule
     }
 
     /**
-     * Get AutoFilter Rule Base.
+     * Get AutoFilter Rule Value.
      *
      * @return int|int[]|string|string[]
      */
@@ -260,7 +260,7 @@ class Rule
     }
 
     /**
-     * Set AutoFilter Rule Base.
+     * Set AutoFilter Rule Value.
      *
      * @param int|int[]|string|string[] $value
      *

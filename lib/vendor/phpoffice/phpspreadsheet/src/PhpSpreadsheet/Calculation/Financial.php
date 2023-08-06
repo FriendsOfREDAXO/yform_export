@@ -426,7 +426,7 @@ class Financial
      *
      * @param float $rate The Interest rate
      * @param int $nper The total number of payment periods
-     * @param float $pv Present Base
+     * @param float $pv Present Value
      * @param int $start The first period in the calculation.
      *                       Payment periods are numbered beginning with 1.
      * @param int $end the last period in the calculation
@@ -456,7 +456,7 @@ class Financial
      *
      * @param float $rate The Interest rate
      * @param int $nper The total number of payment periods
-     * @param float $pv Present Base
+     * @param float $pv Present Value
      * @param int $start The first period in the calculation.
      *                       Payment periods are numbered beginning with 1.
      * @param int $end the last period in the calculation
@@ -490,7 +490,7 @@ class Financial
      *      Use the DB() method in the Financial\Depreciation class instead
      *
      * @param float $cost Initial cost of the asset
-     * @param float $salvage Base at the end of the depreciation.
+     * @param float $salvage Value at the end of the depreciation.
      *                                (Sometimes called the salvage value of the asset)
      * @param int $life Number of periods over which the asset is depreciated.
      *                                (Sometimes called the useful life of the asset)
@@ -521,7 +521,7 @@ class Financial
      *      Use the DDB() method in the Financial\Depreciation class instead
      *
      * @param float $cost Initial cost of the asset
-     * @param float $salvage Base at the end of the depreciation.
+     * @param float $salvage Value at the end of the depreciation.
      *                                (Sometimes called the salvage value of the asset)
      * @param int $life Number of periods over which the asset is depreciated.
      *                                (Sometimes called the useful life of the asset)
@@ -649,7 +649,7 @@ class Financial
     /**
      * FV.
      *
-     * Returns the Future Base of a cash flow with constant payments and interest rate (annuities).
+     * Returns the Future Value of a cash flow with constant payments and interest rate (annuities).
      *
      * Excel Function:
      *        FV(rate,nper,pmt[,pv[,type]])
@@ -664,7 +664,7 @@ class Financial
      * @param float $pmt The payment made each period: it cannot change over the
      *                            life of the annuity. Typically, pmt contains principal
      *                            and interest but no other fees or taxes.
-     * @param float $pv present Base, or the lump-sum amount that a series of
+     * @param float $pv present Value, or the lump-sum amount that a series of
      *                            future payments is worth right now
      * @param int $type A number 0 or 1 and indicates when payments are due:
      *                                0 or omitted    At the end of the period.
@@ -752,8 +752,8 @@ class Financial
      * @param float $rate Interest rate per period
      * @param int $per Period for which we want to find the interest
      * @param int $nper Number of periods
-     * @param float $pv Present Base
-     * @param float $fv Future Base
+     * @param float $pv Present Value
+     * @param float $fv Future Value
      * @param int $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string
@@ -878,8 +878,8 @@ class Financial
      *
      * @param float $rate Interest rate per period
      * @param int $pmt Periodic payment (annuity)
-     * @param float $pv Present Base
-     * @param float $fv Future Base
+     * @param float $pv Present Value
+     * @param float $fv Future Value
      * @param int $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string Result, or a string containing an error
@@ -895,7 +895,7 @@ class Financial
     /**
      * NPV.
      *
-     * Returns the Net Present Base of a cash flow series given a discount rate.
+     * Returns the Net Present Value of a cash flow series given a discount rate.
      *
      * @Deprecated 1.18.0
      *
@@ -920,8 +920,8 @@ class Financial
      *      Use the periods() method in the Financial\CashFlow\Single class instead
      *
      * @param float $rate Interest rate per period
-     * @param float $pv Present Base
-     * @param float $fv Future Base
+     * @param float $pv Present Value
+     * @param float $fv Future Value
      *
      * @return float|string Result, or a string containing an error
      */
@@ -942,8 +942,8 @@ class Financial
      *
      * @param float $rate Interest rate per period
      * @param int $nper Number of periods
-     * @param float $pv Present Base
-     * @param float $fv Future Base
+     * @param float $pv Present Value
+     * @param float $fv Future Value
      * @param int $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string Result, or a string containing an error
@@ -967,8 +967,8 @@ class Financial
      * @param float $rate Interest rate per period
      * @param int $per Period for which we want to find the interest
      * @param int $nper Number of periods
-     * @param float $pv Present Base
-     * @param float $fv Future Base
+     * @param float $pv Present Value
+     * @param float $fv Future Value
      * @param int $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string Result, or a string containing an error
@@ -1080,7 +1080,7 @@ class Financial
     /**
      * PV.
      *
-     * Returns the Present Base of a cash flow with constant payments and interest rate (annuities).
+     * Returns the Present Value of a cash flow with constant payments and interest rate (annuities).
      *
      * @Deprecated 1.18.0
      *
@@ -1090,7 +1090,7 @@ class Financial
      * @param float $rate Interest rate per period
      * @param int $nper Number of periods
      * @param float $pmt Periodic payment (annuity)
-     * @param float $fv Future Base
+     * @param float $fv Future Value
      * @param int $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string Result, or a string containing an error
@@ -1181,8 +1181,8 @@ class Financial
      *      Use the interestRate() method in the Financial\CashFlow\Single class instead
      *
      * @param float $nper The number of periods over which the investment is made
-     * @param float $pv Present Base
-     * @param float $fv Future Base
+     * @param float $pv Present Value
+     * @param float $fv Future Value
      *
      * @return float|string Result, or a string containing an error
      */
@@ -1202,7 +1202,7 @@ class Financial
      *      Use the SLN() method in the Financial\Depreciation class instead
      *
      * @param mixed $cost Initial cost of the asset
-     * @param mixed $salvage Base at the end of the depreciation
+     * @param mixed $salvage Value at the end of the depreciation
      * @param mixed $life Number of periods over which the asset is depreciated
      *
      * @return float|string Result, or a string containing an error
@@ -1223,7 +1223,7 @@ class Financial
      *      Use the SYD() method in the Financial\Depreciation class instead
      *
      * @param mixed $cost Initial cost of the asset
-     * @param mixed $salvage Base at the end of the depreciation
+     * @param mixed $salvage Value at the end of the depreciation
      * @param mixed $life Number of periods over which the asset is depreciated
      * @param mixed $period Period
      *

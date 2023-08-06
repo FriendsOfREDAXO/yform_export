@@ -17,7 +17,7 @@ class Value
     /**
      * IS_BLANK.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -36,7 +36,7 @@ class Value
     /**
      * IS_REF.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *
      * @return bool
      */
@@ -68,7 +68,7 @@ class Value
     /**
      * IS_EVEN.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool|string
@@ -93,7 +93,7 @@ class Value
     /**
      * IS_ODD.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool|string
@@ -118,7 +118,7 @@ class Value
     /**
      * IS_NUMBER.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -141,7 +141,7 @@ class Value
     /**
      * IS_LOGICAL.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -160,7 +160,7 @@ class Value
     /**
      * IS_TEXT.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -179,7 +179,7 @@ class Value
     /**
      * IS_NONTEXT.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -285,7 +285,7 @@ class Value
      *        If value is or refers to N returns
      *        A number            1
      *        Text                2
-     *        Logical Base       4
+     *        Logical Value       4
      *        An error value      16
      *        Array or Matrix     64
      */

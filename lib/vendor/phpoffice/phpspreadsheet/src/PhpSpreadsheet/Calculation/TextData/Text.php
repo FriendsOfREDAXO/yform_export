@@ -11,7 +11,7 @@ class Text
     /**
      * LEN.
      *
-     * @param mixed $value String Base
+     * @param mixed $value String Value
      *                         Or can be an array of values
      *
      * @return array|int
@@ -34,9 +34,9 @@ class Text
      * EXACT is case-sensitive but ignores formatting differences.
      * Use EXACT to test text being entered into a document.
      *
-     * @param mixed $value1 String Base
+     * @param mixed $value1 String Value
      *                         Or can be an array of values
-     * @param mixed $value2 String Base
+     * @param mixed $value2 String Value
      *                         Or can be an array of values
      *
      * @return array|bool
@@ -58,7 +58,7 @@ class Text
     /**
      * RETURNSTRING.
      *
-     * @param mixed $testValue Base to check
+     * @param mixed $testValue Value to check
      *                         Or can be an array of values
      *
      * @return null|array|string

@@ -46,7 +46,7 @@ class Gamma extends GammaBase
      *
      * Returns the gamma distribution.
      *
-     * @param mixed $value Float Base at which you want to evaluate the distribution
+     * @param mixed $value Float Value at which you want to evaluate the distribution
      *                      Or can be an array of values
      * @param mixed $a Parameter to the distribution as a float
      *                      Or can be an array of values
@@ -123,7 +123,7 @@ class Gamma extends GammaBase
      *
      * Returns the natural logarithm of the gamma function.
      *
-     * @param mixed $value Float Base at which you want to evaluate the distribution
+     * @param mixed $value Float Value at which you want to evaluate the distribution
      *                      Or can be an array of values
      *
      * @return array|float|string

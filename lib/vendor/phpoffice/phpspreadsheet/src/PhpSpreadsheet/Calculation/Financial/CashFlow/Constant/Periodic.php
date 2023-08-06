@@ -13,7 +13,7 @@ class Periodic
     /**
      * FV.
      *
-     * Returns the Future Base of a cash flow with constant payments and interest rate (annuities).
+     * Returns the Future Value of a cash flow with constant payments and interest rate (annuities).
      *
      * Excel Function:
      *        FV(rate,nper,pmt[,pv[,type]])
@@ -23,7 +23,7 @@ class Periodic
      * @param mixed $payment The payment made each period: it cannot change over the
      *                            life of the annuity. Typically, pmt contains principal
      *                            and interest but no other fees or taxes.
-     * @param mixed $presentValue present Base, or the lump-sum amount that a series of
+     * @param mixed $presentValue present Value, or the lump-sum amount that a series of
      *                            future payments is worth right now
      * @param mixed $type A number 0 or 1 and indicates when payments are due:
      *                      0 or omitted    At the end of the period.
@@ -60,12 +60,12 @@ class Periodic
     /**
      * PV.
      *
-     * Returns the Present Base of a cash flow with constant payments and interest rate (annuities).
+     * Returns the Present Value of a cash flow with constant payments and interest rate (annuities).
      *
      * @param mixed $rate Interest rate per period
      * @param mixed $numberOfPeriods Number of periods as an integer
      * @param mixed $payment Periodic payment (annuity)
-     * @param mixed $futureValue Future Base
+     * @param mixed $futureValue Future Value
      * @param mixed $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string Result, or a string containing an error
@@ -108,8 +108,8 @@ class Periodic
      *
      * @param mixed $rate Interest rate per period
      * @param mixed $payment Periodic payment (annuity)
-     * @param mixed $presentValue Present Base
-     * @param mixed $futureValue Future Base
+     * @param mixed $presentValue Present Value
+     * @param mixed $futureValue Future Value
      * @param mixed $type Payment type: 0 = at the end of each period, 1 = at the beginning of each period
      *
      * @return float|string Result, or a string containing an error

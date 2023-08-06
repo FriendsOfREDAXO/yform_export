@@ -20,7 +20,7 @@ class Cumulative
      *
      * @param mixed $rate The Interest rate
      * @param mixed $periods The total number of payment periods
-     * @param mixed $presentValue Present Base
+     * @param mixed $presentValue Present Value
      * @param mixed $start The first period in the calculation.
      *                       Payment periods are numbered beginning with 1.
      * @param mixed $end the last period in the calculation
@@ -85,7 +85,7 @@ class Cumulative
      *
      * @param mixed $rate The Interest rate
      * @param mixed $periods The total number of payment periods as an integer
-     * @param mixed $presentValue Present Base
+     * @param mixed $presentValue Present Value
      * @param mixed $start The first period in the calculation.
      *                       Payment periods are numbered beginning with 1.
      * @param mixed $end the last period in the calculation

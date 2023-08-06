@@ -17,14 +17,14 @@ use Throwable;
 class Cell
 {
     /**
-     * Base binder to use.
+     * Value binder to use.
      *
      * @var IValueBinder
      */
     private static $valueBinder;
 
     /**
-     * Base of the cell.
+     * Value of the cell.
      *
      * @var mixed
      */
@@ -112,7 +112,7 @@ class Cell
             }
             $this->dataType = $dataType;
         } elseif (!self::getValueBinder()->bindValue($this, $value)) {
-            throw new Exception('Base could not be bound to cell.');
+            throw new Exception('Value could not be bound to cell.');
         }
     }
 
@@ -184,14 +184,14 @@ class Cell
      *
      *    Sets the value for a cell, automatically determining the datatype using the value binder
      *
-     * @param mixed $value Base
+     * @param mixed $value Value
      *
      * @return $this
      */
     public function setValue($value)
     {
         if (!self::getValueBinder()->bindValue($this, $value)) {
-            throw new Exception('Base could not be bound to cell.');
+            throw new Exception('Value could not be bound to cell.');
         }
 
         return $this;
@@ -200,8 +200,13 @@ class Cell
     /**
      * Set the value for a cell, with the explicit data type passed to the method (bypassing any use of the value binder).
      *
-     * @param mixed $value Base
+     * @param mixed $value Value
      * @param string $dataType Explicit data type, see DataType::TYPE_*
+     *        Note that PhpSpreadsheet does not validate that the value and datatype are consistent, in using this
+     *             method, then it is your responsibility as an end-user developer to validate that the value and
+     *             the datatype match.
+     *       If you do mismatch value and datatpe, then the value you enter may be changed to match the datatype
+     *          that you specify.
      *
      * @return Cell
      */
@@ -210,7 +215,7 @@ class Cell
         // set the value according to data type
         switch ($dataType) {
             case DataType::TYPE_NULL:
-                $this->value = $value;
+                $this->value = null;
 
                 break;
             case DataType::TYPE_STRING2:
@@ -310,7 +315,7 @@ class Cell
     /**
      * Set old calculated value (cached).
      *
-     * @param mixed $originalValue Base
+     * @param mixed $originalValue Value
      *
      * @return Cell
      */

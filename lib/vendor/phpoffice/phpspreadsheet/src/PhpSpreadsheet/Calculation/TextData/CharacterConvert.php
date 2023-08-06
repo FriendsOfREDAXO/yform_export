@@ -13,7 +13,7 @@ class CharacterConvert
     /**
      * CHAR.
      *
-     * @param mixed $character Integer Base to convert to its character representation
+     * @param mixed $character Integer Value to convert to its character representation
      *                              Or can be an array of values
      *
      * @return array|string The character string

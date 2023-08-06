@@ -53,7 +53,7 @@ class FormulaToken
     const TOKEN_SUBTYPE_UNION = 'Union';
 
     /**
-     * Base.
+     * Value.
      *
      * @var string
      */
@@ -89,7 +89,7 @@ class FormulaToken
     }
 
     /**
-     * Get Base.
+     * Get Value.
      *
      * @return string
      */
@@ -99,7 +99,7 @@ class FormulaToken
     }
 
     /**
-     * Set Base.
+     * Set Value.
      *
      * @param string $value
      */

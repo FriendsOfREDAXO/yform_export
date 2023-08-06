@@ -39,7 +39,7 @@ class Conditional
      *            ReturnIfFalse can be another formula.
      *
      * @param mixed $condition Condition to evaluate
-     * @param mixed $returnIfTrue Base to return when condition is true
+     * @param mixed $returnIfTrue Value to return when condition is true
      *              Note that this can be an array value
      * @param mixed $returnIfFalse Optional value to return when condition is false
      *              Note that this can be an array value
@@ -123,9 +123,9 @@ class Conditional
      * Excel Function:
      *        =IFERROR(testValue,errorpart)
      *
-     * @param mixed $testValue Base to check, is also the value returned when no error
+     * @param mixed $testValue Value to check, is also the value returned when no error
      *                      Or can be an array of values
-     * @param mixed $errorpart Base to return when testValue is an error condition
+     * @param mixed $errorpart Value to return when testValue is an error condition
      *              Note that this can be an array value to be returned
      *
      * @return mixed The value of errorpart or testValue determined by error condition
@@ -149,9 +149,9 @@ class Conditional
      * Excel Function:
      *        =IFNA(testValue,napart)
      *
-     * @param mixed $testValue Base to check, is also the value returned when not an NA
+     * @param mixed $testValue Value to check, is also the value returned when not an NA
      *                      Or can be an array of values
-     * @param mixed $napart Base to return when testValue is an NA condition
+     * @param mixed $napart Value to return when testValue is an NA condition
      *              Note that this can be an array value to be returned
      *
      * @return mixed The value of errorpart or testValue determined by error condition
@@ -178,7 +178,7 @@ class Conditional
      *         testValue1 ... testValue_n
      *             Conditions to Evaluate
      *         returnIfTrue1 ... returnIfTrue_n
-     *             Base returned if corresponding testValue (nth) was true
+     *             Value returned if corresponding testValue (nth) was true
      *
      * @param mixed ...$arguments Statement arguments
      *              Note that this can be an array value to be returned

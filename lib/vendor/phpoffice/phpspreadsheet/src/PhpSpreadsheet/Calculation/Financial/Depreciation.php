@@ -22,7 +22,7 @@ class Depreciation
      *        DB(cost,salvage,life,period[,month])
      *
      * @param mixed $cost Initial cost of the asset
-     * @param mixed $salvage Base at the end of the depreciation.
+     * @param mixed $salvage Value at the end of the depreciation.
      *                             (Sometimes called the salvage value of the asset)
      * @param mixed $life Number of periods over which the asset is depreciated.
      *                           (Sometimes called the useful life of the asset)
@@ -87,7 +87,7 @@ class Depreciation
      *        DDB(cost,salvage,life,period[,factor])
      *
      * @param mixed $cost Initial cost of the asset
-     * @param mixed $salvage Base at the end of the depreciation.
+     * @param mixed $salvage Value at the end of the depreciation.
      *                                (Sometimes called the salvage value of the asset)
      * @param mixed $life Number of periods over which the asset is depreciated.
      *                                (Sometimes called the useful life of the asset)
@@ -142,7 +142,7 @@ class Depreciation
      * Returns the straight-line depreciation of an asset for one period
      *
      * @param mixed $cost Initial cost of the asset
-     * @param mixed $salvage Base at the end of the depreciation
+     * @param mixed $salvage Value at the end of the depreciation
      * @param mixed $life Number of periods over which the asset is depreciated
      *
      * @return float|string Result, or a string containing an error
@@ -174,7 +174,7 @@ class Depreciation
      * Returns the sum-of-years' digits depreciation of an asset for a specified period.
      *
      * @param mixed $cost Initial cost of the asset
-     * @param mixed $salvage Base at the end of the depreciation
+     * @param mixed $salvage Value at the end of the depreciation
      * @param mixed $life Number of periods over which the asset is depreciated
      * @param mixed $period Period
      *

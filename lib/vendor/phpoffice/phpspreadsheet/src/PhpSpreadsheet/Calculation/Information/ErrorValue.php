@@ -11,7 +11,7 @@ class ErrorValue
     /**
      * IS_ERR.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -30,7 +30,7 @@ class ErrorValue
     /**
      * IS_ERROR.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
@@ -47,13 +47,13 @@ class ErrorValue
             return false;
         }
 
-        return in_array($value, ExcelError::$errorCodes) || $value === ExcelError::CALC();
+        return in_array($value, ExcelError::ERROR_CODES, true);
     }
 
     /**
      * IS_NA.
      *
-     * @param mixed $value Base to check
+     * @param mixed $value Value to check
      *                      Or can be an array of values
      *
      * @return array|bool
