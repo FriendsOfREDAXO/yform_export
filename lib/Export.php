@@ -208,9 +208,14 @@ class Export
             foreach ($row as $name => $value) {
                 $column = $this->sheet->getCell([$c, $r])->getColumn();
 
-                /** set relation */
-                if (isset($this->relationsMap[$c])) {
-                    $value = $this->relationsMap[$c][$value];
+                /** Check if $c exists in relationsMap and if $value is a valid key in it */
+                if (isset($this->relationsMap[$c]) && isset($this->relationsMap[$c][$value])) {
+                    $relationValue = $this->relationsMap[$c][$value];
+
+                    /** Check if the relation value is not empty or 0 and set the value */
+                    if ('' !== $relationValue && 0 !== $relationValue) {
+                        $value = $relationValue;
+                    }
                 }
 
                 /** format cell */
