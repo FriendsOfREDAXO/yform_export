@@ -213,7 +213,7 @@ class Export
                     $relationValue = $this->relationsMap[$c][$value];
 
                     // Check if the relation value is not empty or 0 and set the value
-                    if ($relationValue !== '' && $relationValue !== 0) {
+                    if ('' !== $relationValue && 0 !== $relationValue) {
                         $value = $relationValue;
                     }
                 }
