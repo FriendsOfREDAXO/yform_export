@@ -1,7 +1,7 @@
 package: yform_export
 version: '0.0.11'
-author: eaCe
-supportpage: https://github.com/eaCe/yform_export
+author: Friends Of REDAXO
+supportpage: https://github.com/FriendsOfREDAXO/yform_export
 
 requires:
     packages:
