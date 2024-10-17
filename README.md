@@ -12,17 +12,18 @@ Das Addon ermöglicht einen einfachen Export von YForm-Datentabellen in das `.xl
 
 [MIT Lizenz](LICENSE)
 
-## Autoren
+## Autor
 
 **Friends Of REDAXO**
 
 * http://www.redaxo.org
 * https://github.com/FriendsOfREDAXO
 
+
+## Credits
+
 **Projekt-Lead**
 * [eaCe](https://github.com/eaCe)
 
-
-## Credits
 
 [PHPOffice - PhpSpreadsheet](https://github.com/PHPOffice/phpspreadsheet/)
