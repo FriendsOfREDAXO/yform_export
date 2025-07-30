@@ -1,6 +1,6 @@
 <?php
 
-namespace YFormExport;
+namespace FriendsOfRedaxo\YFormExport;
 
 use rex;
 use rex_exception;
