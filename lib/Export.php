@@ -1,6 +1,6 @@
 <?php
 
-namespace YFormExport;
+namespace FriendsOfRedaxo\YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
