@@ -1,6 +1,6 @@
 <?php
 
-namespace YFormExport;
+namespace FriendsOfRedaxo\YFormExport;
 
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -16,7 +16,6 @@ use rex_string;
 use rex_yform_manager_field;
 use rex_yform_manager_table;
 use rex_yform_value_be_manager_relation;
-
 use rex_yform_value_choice;
 
 use function array_key_exists;
